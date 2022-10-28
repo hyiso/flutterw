@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:args/args.dart';
 import 'package:args/command_runner.dart';
 
+import 'src/commands/init.dart';
 import 'src/commands/wrapper.dart';
 
 import 'version.g.dart';
@@ -12,7 +13,8 @@ class FlutterwRunner extends CommandRunner<dynamic> {
     'flutterw',
     'flutterw wraps flutter tool with more advanced usage.',
   ) {
-    addCommand(WrapperCommand('flutter', ''));
+    addCommand(InitCommand());
+    addCommand(WrapperCommand('flutter'));
   }
 
   @override
@@ -29,7 +31,7 @@ class FlutterwRunner extends CommandRunner<dynamic> {
       }
     } on ArgParserException catch (e) {
       if (e.commands.isEmpty && args.contains('--version')) {
-        stderr.writeln('flutterw • $kPackageVersion');
+        stderr.writeln('flutterw $kPackageVersion');
       }
       results = super.parse(['flutter', ...args]);
     }
