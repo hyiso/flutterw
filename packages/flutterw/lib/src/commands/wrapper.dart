@@ -2,12 +2,10 @@ import 'dart:async';
 import 'dart:io';
 
 import 'package:args/args.dart';
-import 'package:path/path.dart';
-import 'package:yaml/yaml.dart';
 
 import 'base.dart';
 
-class WrapperCommand extends BaseCommand {
+class WrapperCommand extends HookableCommand {
 
   @override
   String get description => 'Wraps $name command';
@@ -21,35 +19,20 @@ class WrapperCommand extends BaseCommand {
   final argParser = ArgParser.allowAnything();
 
   @override
-  bool get hidden => name == 'flutter';
+  bool get hidden => true;
 
-  File? get flutterwYamlFile {
-    for (var dir = Directory.current; dir.path != dir.parent.path; dir = dir.parent) {
-      var file = File(join(dir.path, 'flutterw.yaml'));
-      if (file.existsSync()) {
-        return file;
-      }
+  String get executable {
+    if (config?[name] != null) {
+      stderr.writeln('Use $name located in ${config?.file.path}');
+      return config?[name];
     }
-    return null;
-  }
-
-  String? get executable {
-    if (flutterwYamlFile != null && flutterwYamlFile!.existsSync()) {
-      YamlMap? yaml = loadYaml(flutterwYamlFile!.readAsStringSync());
-      if (yaml?[name] is String) {
-        stderr.writeln('Run $name from ${yaml?[name]} set in flutterw.yaml.');
-        return yaml?[name];
-      }
-    }
-    return null;
+    return name;
   }
 
   @override
-  Future<void> run() async {
-    await startProcess(
-      executable ?? name,
-      argResults!.arguments,
-    );
-  }
+  Future<int> runCommand() => startProcess(
+    executable,
+    argResults!.arguments,
+  );
 
 }

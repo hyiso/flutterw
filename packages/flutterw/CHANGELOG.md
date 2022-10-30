@@ -1,6 +1,10 @@
+## 0.3.0
+
+- Supports command hooks
+.
 ## 0.2.0
 
-- Supports working with fvm
+- Supports located flutter tool
 .
 ## 0.1.0
 
