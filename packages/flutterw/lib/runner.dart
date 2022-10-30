@@ -8,13 +8,22 @@ import 'src/commands/wrapper.dart';
 
 import 'version.g.dart';
 
-class FlutterwRunner extends CommandRunner<dynamic> {
-  FlutterwRunner(): super(
-    'flutterw',
-    'flutterw wraps flutter tool with more advanced usage.',
+extension _StringExtension on String {
+    String capitalize() {
+      return "${this[0].toUpperCase()}${substring(1)}";
+    }
+}
+
+class WrapperRunner extends CommandRunner {
+
+  final String origin;
+
+  WrapperRunner(this.origin): super(
+    '${origin}w',
+    '${origin}w wraps $origin cli tool with more advanced usage.',
   ) {
     addCommand(InitCommand());
-    addCommand(WrapperCommand('flutter'));
+    addCommand(WrapperCommand(origin));
   }
 
   @override
@@ -27,22 +36,23 @@ class FlutterwRunner extends CommandRunner<dynamic> {
         results.arguments.isNotEmpty &&
         results.rest.isNotEmpty
       ) {
-        results = super.parse(['flutter', ...args]);
+        results = super.parse([origin, ...args]);
       }
     } on ArgParserException catch (e) {
       if (e.commands.isEmpty && args.contains('--version')) {
-        stderr.writeln('Flutterw $kPackageVersion');
+        stderr.writeln('${executableName.capitalize()} $kPackageVersion');
       }
-      results = super.parse(['flutter', ...args]);
+      results = super.parse([origin, ...args]);
     }
     return results;
   }
 
   @override
   String get invocation => '${super.invocation}'
-''' as flutter <command> [arguments]
+''' as $origin <command> [arguments]
 i.e.:
-       flutterw clean
-       flutterw pub get
+       $executableName pub get
+       $executableName run
        ...''';
+
 }

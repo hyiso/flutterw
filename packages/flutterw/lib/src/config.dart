@@ -3,7 +3,7 @@ import 'dart:io';
 import 'package:path/path.dart';
 import 'package:yaml/yaml.dart';
 
-const kFlutterwConfigFileName = 'flutterw.yaml';
+const kConfigFileName = 'flutterw.yaml';
 
 class Config {
 
@@ -19,7 +19,7 @@ class Config {
 
   static Config? lookup(Directory directory) {
     for (var dir = directory; dir.path != dir.parent.path; dir = dir.parent) {
-      var file = File(join(dir.path, kFlutterwConfigFileName));
+      var file = File(join(dir.path, kConfigFileName));
       if (file.existsSync()) {
         return Config.fromFile(file);
       }

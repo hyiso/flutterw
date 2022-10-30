@@ -1,0 +1,3 @@
+hooks:
+  pre_pub_publish:
+    - dart ./scripts/generate_version.dart

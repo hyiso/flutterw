@@ -1,1 +1,2 @@
-flutter: ./.fvm/flutter_sdk/bin/flutter
+flutter: .fvm/flutter_sdk/bin/flutter
+dart: .fvm/flutter_sdk/bin/dart
