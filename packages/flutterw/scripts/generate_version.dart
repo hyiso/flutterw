@@ -1,13 +1,11 @@
 // @dart=2.9
 
-import 'dart:io' show Directory, File;
-import 'package:path/path.dart' show joinAll;
+import 'dart:io' show File;
+import 'package:path/path.dart' show join, relative;
 import 'package:yaml/yaml.dart' show YamlMap, loadYaml;
 
 Future<void> main() async {
-  final outputPath = joinAll(
-    [Directory.current.path, 'lib', 'version.g.dart'],
-  );
+  final outputPath = join('lib', 'version.g.dart');
   // ignore: avoid_print
   print('Updating generated file $outputPath');
   final yamlMap =
