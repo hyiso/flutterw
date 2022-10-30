@@ -38,8 +38,8 @@ abstract class HookableCommand extends BaseCommand {
   @override
   Future<void> run() async {
     var restCommands = argResults!.rest.where((element) => !element.startsWith('-'));
-    final preHook = ['pre', name, ...restCommands].join('_');
-    final postHook = ['post', name, ...restCommands].join('_');
+    final preHook = ['pre', ...restCommands].join('_');
+    final postHook = ['post', ...restCommands].join('_');
     await _runHookScripts(preHook);
     final code = await runCommand();
     await _runHookScripts(postHook);

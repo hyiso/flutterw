@@ -1,3 +1,7 @@
+## 0.3.1
+
+- Fix command hook name term.
+
 ## 0.3.0
 
 - Supports command hooks

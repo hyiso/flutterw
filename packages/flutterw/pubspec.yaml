@@ -1,6 +1,6 @@
 name: flutterw
 description: flutterw wraps flutter tool for advanced usage.
-version: 0.3.0
+version: 0.3.1
 homepage: https://github.com/hyiso/flutterw
 
 environment:

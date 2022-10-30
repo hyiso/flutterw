@@ -33,10 +33,10 @@ i.e:
 Adding command hooks in `flutterw.yaml` can automatically do extra works.
 ``` yaml
 hooks:
-  pre_flutter_clean:
+  pre_clean:
     - echo 'task 1'
     - echo 'task 2'
-  post_flutter_pub_get:
+  post_pub_get:
     - echo 'task 3'
     - echo 'task 4'
 ```

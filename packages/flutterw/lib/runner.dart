@@ -31,7 +31,7 @@ class FlutterwRunner extends CommandRunner<dynamic> {
       }
     } on ArgParserException catch (e) {
       if (e.commands.isEmpty && args.contains('--version')) {
-        stderr.writeln('flutterw $kPackageVersion');
+        stderr.writeln('Flutterw $kPackageVersion');
       }
       results = super.parse(['flutter', ...args]);
     }
