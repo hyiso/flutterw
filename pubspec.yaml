@@ -1,0 +1,7 @@
+name: "flutterw_monorepo"
+publish_to: none
+
+environment:
+  sdk: '>=2.12.0 <3.0.0'
+dev_dependencies:
+  test: ^1.22.0

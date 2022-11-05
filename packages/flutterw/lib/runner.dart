@@ -1,18 +1,8 @@
-import 'dart:io';
-
 import 'package:args/args.dart';
 import 'package:args/command_runner.dart';
 
 import 'src/commands/init.dart';
 import 'src/commands/wrapper.dart';
-
-import 'version.g.dart';
-
-extension _StringExtension on String {
-    String capitalize() {
-      return "${this[0].toUpperCase()}${substring(1)}";
-    }
-}
 
 class WrapperRunner extends CommandRunner {
 
@@ -38,10 +28,8 @@ class WrapperRunner extends CommandRunner {
       ) {
         results = super.parse([origin, ...args]);
       }
+    // ignore: unused_catch_clause
     } on ArgParserException catch (e) {
-      if (e.commands.isEmpty && args.contains('--version')) {
-        stderr.writeln('${executableName.capitalize()} $kPackageVersion');
-      }
       results = super.parse([origin, ...args]);
     }
     return results;
