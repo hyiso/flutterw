@@ -1,7 +1,7 @@
 // @dart=2.9
 
 import 'dart:io' show File;
-import 'package:path/path.dart' show join, relative;
+import 'package:path/path.dart' show join;
 import 'package:yaml/yaml.dart' show YamlMap, loadYaml;
 
 Future<void> main() async {
