@@ -5,13 +5,13 @@ import 'src/commands/init.dart';
 import 'src/commands/wrapper.dart';
 
 class WrapperRunner extends CommandRunner {
-
   final String origin;
 
-  WrapperRunner(this.origin): super(
-    '${origin}w',
-    '${origin}w wraps $origin cli tool with more advanced usage.',
-  ) {
+  WrapperRunner(this.origin)
+      : super(
+          '${origin}w',
+          '${origin}w wraps $origin cli tool with more advanced usage.',
+        ) {
     addCommand(InitCommand());
     addCommand(WrapperCommand(origin));
   }
@@ -21,14 +21,12 @@ class WrapperRunner extends CommandRunner {
     ArgResults results;
     try {
       results = argParser.parse(args);
-      if (
-        results.command == null &&
-        results.arguments.isNotEmpty &&
-        results.rest.isNotEmpty
-      ) {
+      if (results.command == null &&
+          results.arguments.isNotEmpty &&
+          results.rest.isNotEmpty) {
         results = super.parse([origin, ...args]);
       }
-    // ignore: unused_catch_clause
+      // ignore: unused_catch_clause
     } on ArgParserException catch (e) {
       results = super.parse([origin, ...args]);
     }
@@ -37,10 +35,9 @@ class WrapperRunner extends CommandRunner {
 
   @override
   String get invocation => '${super.invocation}'
-''' as $origin <command> [arguments]
+      ''' as $origin <command> [arguments]
 i.e.:
        $executableName pub get
        $executableName run
        ...''';
-
 }

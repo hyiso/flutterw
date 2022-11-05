@@ -4,11 +4,9 @@ import 'package:flutterw/runner.dart';
 import 'package:test/test.dart';
 
 void main() {
-
   group('WrapperRunner', (() {
-
     final runner = WrapperRunner('flutter');
-    
+
     test('.parse() should work.', () {
       var argResults = runner.parse(['init']);
 
@@ -20,7 +18,6 @@ void main() {
 
       argResults = runner.parse(['--version']);
       expect(argResults.command?.name == 'flutter', true);
-
     });
   }));
 }

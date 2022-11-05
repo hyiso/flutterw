@@ -6,15 +6,12 @@ import 'package:yaml/yaml.dart';
 const kConfigFileName = 'flutterw.yaml';
 
 class Config {
-
-
   Config.fromFile(this.file);
 
   File file;
 
   YamlMap? get _config => loadYaml(file.readAsStringSync());
 
-  
   dynamic operator [](Object? key) => _config?[key];
 
   static Config? lookup(Directory directory) {
@@ -26,5 +23,4 @@ class Config {
     }
     return null;
   }
-
 }

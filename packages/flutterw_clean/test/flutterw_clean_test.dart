@@ -4,10 +4,7 @@ import 'package:flutterw_clean/flutterw_clean.dart';
 import 'package:test/test.dart';
 
 void main() {
-  final testEntries = [
-    '.testDir/',
-    '.testFile'
-  ];
+  final testEntries = ['.testDir/', '.testFile'];
   test('funtion clean should work', () {
     Directory testDir = Directory.current.childDirectory(testEntries.first);
     File testFile = Directory.current.childFile(testEntries.last);

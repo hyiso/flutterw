@@ -5,14 +5,13 @@ import 'package:args/args.dart';
 import 'base.dart';
 
 class WrapperCommand extends HookableCommand {
-
   @override
   String get description => 'Wraps $name command';
 
   @override
   final String name;
 
-  WrapperCommand(this.name):super();
+  WrapperCommand(this.name) : super();
 
   @override
   final argParser = ArgParser.allowAnything();
@@ -24,8 +23,7 @@ class WrapperCommand extends HookableCommand {
 
   @override
   Future<int> runCommand() => startProcess(
-    executable,
-    argResults!.arguments,
-  );
-
+        executable,
+        argResults!.arguments,
+      );
 }

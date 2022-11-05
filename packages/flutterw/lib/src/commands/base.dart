@@ -5,18 +5,15 @@ import 'package:colorize/colorize.dart';
 import 'package:flutterw/src/config.dart';
 
 abstract class BaseCommand extends Command {
-
   Future<int> startProcess(
     String executable,
-    List<String> arguments,
-    {
-      String? workingDirectory,
-      Map<String, String>? environment,
-      bool includeParentEnvironment = true,
-      bool runInShell = false,
-      ProcessStartMode mode = ProcessStartMode.inheritStdio,
-    }
-  ) async {
+    List<String> arguments, {
+    String? workingDirectory,
+    Map<String, String>? environment,
+    bool includeParentEnvironment = true,
+    bool runInShell = false,
+    ProcessStartMode mode = ProcessStartMode.inheritStdio,
+  }) async {
     final process = await Process.start(
       executable,
       arguments,
@@ -30,14 +27,13 @@ abstract class BaseCommand extends Command {
   }
 
   Config? get config => Config.lookup(Directory.current);
-  
 }
-
 
 abstract class HookableCommand extends BaseCommand {
   @override
   Future<void> run() async {
-    var restCommands = argResults!.rest.where((element) => !element.startsWith('-'));
+    var restCommands =
+        argResults!.rest.where((element) => !element.startsWith('-'));
     final preHook = ['pre', ...restCommands].join('_');
     final postHook = ['post', ...restCommands].join('_');
     await _runHookScripts(preHook);

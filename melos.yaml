@@ -33,15 +33,5 @@ scripts:
   format: dart format -o write .
 
   format-check:
-    exec: flutter format . --set-exit-if-changed
+    exec: dart format . --output=none --set-exit-if-changed
     description: Run `flutter format` checks for all packages.
-
-  version: dart run scripts/generate_version.dart
-
-  activate:
-    description: Activate the local version of flutterw for development.
-    run: dart pub global activate --source="path" . --executable="flutterw" --overwrite
-
-  activate:pub:
-    description: Activate the published version of flutterw.
-    run: dart pub global activate flutterw --overwrite

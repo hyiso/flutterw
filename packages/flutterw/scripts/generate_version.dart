@@ -8,8 +8,7 @@ Future<void> main() async {
   final outputPath = join('lib', 'version.g.dart');
   // ignore: avoid_print
   print('Updating generated file $outputPath');
-  final yamlMap =
-      loadYaml(File('pubspec.yaml').readAsStringSync()) as YamlMap;
+  final yamlMap = loadYaml(File('pubspec.yaml').readAsStringSync()) as YamlMap;
   final currentVersion = yamlMap['version'] as String;
   final fileContents = '''
 /// This file is generated. Do not manually edit.
