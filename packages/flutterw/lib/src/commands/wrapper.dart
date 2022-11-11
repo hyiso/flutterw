@@ -1,29 +1,56 @@
-import 'dart:async';
+import 'dart:io';
 
-import 'package:args/args.dart';
+import 'package:cli_wrapper/cli_wrapper.dart';
+import 'package:colorize/colorize.dart';
+import 'package:flutterw/runner.dart';
+import 'package:yaml/yaml.dart';
 
-import 'base.dart';
+class FlutterWrapperCommand extends WrapperCommand {
+  FlutterWrapperCommand({
+    required super.name,
+    required super.originExecutable,
+  });
 
-class WrapperCommand extends HookableCommand {
+  YamlMap? get config {
+    final file = File(kConfigFileName);
+    if (file.existsSync()) {
+      return loadYaml(file.readAsStringSync());
+    }
+    return null;
+  }
+
   @override
-  String get description => 'Wraps $name command';
+  Map<String, List> get hooks {
+    final Map registeredHooks = config?['hooks'] ?? {};
+    return registeredHooks.cast();
+  }
 
   @override
-  final String name;
-
-  WrapperCommand(this.name) : super();
-
-  @override
-  final argParser = ArgParser.allowAnything();
+  Map<String, String> get plugins {
+    final Map registeredPlugins = config?['plugins'] ?? {};
+    return registeredPlugins.cast();
+  }
 
   @override
   bool get hidden => true;
 
-  String get executable => config?[name] ?? name;
+  @override
+  void printPlugin(String plugin, List<String> arguments) {
+    stderr.writeln(
+        'Hit plugin ${Colorize('$plugin:${plugins[plugin]}')}, run it');
+    stderr.writeln(
+        '  └> $originExecutable pub run ${plugins[plugin]} ${arguments.join(' ')}');
+  }
 
   @override
-  Future<int> runCommand() => startProcess(
-        executable,
-        argResults!.arguments,
-      );
+  void printHook(String hook) {
+    stderr.writeln(
+        Colorize('Run ${Colorize(hook).white().bold()} hook scripts...')
+            .white());
+  }
+
+  @override
+  void printHookScript(String script) {
+    stderr.writeln(Colorize('  └> $script').white());
+  }
 }
