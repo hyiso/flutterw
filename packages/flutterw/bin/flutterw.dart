@@ -4,8 +4,8 @@ import 'package:colorize/colorize.dart';
 import 'package:flutterw/runner.dart';
 import 'package:flutterw/version.g.dart';
 
-void main(List<String> args) {
-  var runner = WrapperRunner('flutter');
+void main(List<String> args) async {
+  var runner = FlutterWrapperRunner();
   if (args.contains('--version')) {
     stderr.writeln('Flutterw $kPackageVersion');
   }

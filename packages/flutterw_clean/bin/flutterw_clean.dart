@@ -1,7 +1,6 @@
 import 'dart:io';
 
 import 'package:flutterw_clean/flutterw_clean.dart';
-import 'package:path/path.dart';
 
 const _kCleanableEntries = [
   'build/',
@@ -14,6 +13,5 @@ const _kCleanableEntries = [
 ];
 
 void main(List<String> arguments) {
-  stderr.writeln('Running "flutterw clean" in ${basename(Directory.current.path)}...');
   clean(Directory.current, _kCleanableEntries);
 }
