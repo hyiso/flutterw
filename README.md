@@ -22,4 +22,4 @@ i.e:
   flutterw pub get
   ...
 ```
-More usage see `examples` fold.
+More usage see [examples](./examples/) fold.

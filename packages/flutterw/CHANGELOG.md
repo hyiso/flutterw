@@ -1,3 +1,8 @@
+## 0.5.0-pre.0
+
+- Support plugins system.
+- Remve dartw, focus on flutter tool.
+
 ## 0.4.0
 
 - Add dartw to support dart commands.
