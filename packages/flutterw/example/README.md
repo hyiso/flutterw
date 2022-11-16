@@ -1,1 +1,1 @@
-See [examples](../../../examples/)
+See [examples](https://github.com/hyiso/flutterw/tree/main/examples)

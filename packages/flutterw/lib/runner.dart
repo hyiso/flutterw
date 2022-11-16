@@ -28,26 +28,25 @@ class FlutterWrapperRunner extends WrapperRunner {
   }
 
   @override
-  String get originExecutable => config?[originName] ?? originName;
+  String get originExecutableName => config?['flutter'] ?? 'flutter';
 
   @override
   void addCommand(Command command) {
     if (command.name == 'help') {
-      super.addCommand(HelpCommand(originExecutable: originExecutable));
+      super.addCommand(HelpCommand());
     } else {
-      super.addCommand(FlutterWrapperCommand(
-          name: command.name, originExecutable: originExecutable));
+      super.addCommand(FlutterWrapperCommand(name: command.name));
     }
   }
 
   @override
   String get usage {
     var buffer = StringBuffer('$description\n\n');
-    final process = Process.runSync(originExecutable, ['-h']);
-    buffer.write((process.stderr as String?)
-        ?.replaceAll(originExecutable, executableName));
-    buffer.write((process.stdout as String?)
-        ?.replaceAll(originExecutable, executableName));
+    final process = Process.runSync(originExecutableName, ['-h']);
+    buffer.write(
+        (process.stderr as String?)?.replaceAll('flutter', executableName));
+    buffer.write(
+        (process.stdout as String?)?.replaceAll('flutter', executableName));
     return buffer.toString();
   }
 }

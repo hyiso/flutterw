@@ -7,9 +7,8 @@ import 'package:yaml/yaml.dart';
 
 class FlutterWrapperCommand extends WrapperCommand {
   FlutterWrapperCommand({
-    required super.name,
-    required super.originExecutable,
-  });
+    required String name,
+  }) : super(name: name);
 
   YamlMap? get config {
     final file = File(kConfigFileName);
@@ -35,11 +34,20 @@ class FlutterWrapperCommand extends WrapperCommand {
   bool get hidden => true;
 
   @override
-  void printPlugin(String plugin, List<String> arguments) {
+  Future<void> runPlugin(String plugin, List<String> arguments) async {
     stderr.writeln(
         'Hit plugin ${Colorize('$plugin:${plugins[plugin]}')}, run it');
     stderr.writeln(
-        '  └> $originExecutable pub run ${plugins[plugin]} ${arguments.join(' ')}');
+        '  └> flutter pub run ${plugins[plugin]} ${arguments.join(' ')}');
+    final process = await Process.start(
+      (runner! as FlutterWrapperRunner).originExecutableName,
+      ['pub', 'run', plugins[plugin]!, ...arguments],
+      mode: ProcessStartMode.inheritStdio,
+    );
+    final code = await process.exitCode;
+    if (code != 0) {
+      exit(code);
+    }
   }
 
   @override

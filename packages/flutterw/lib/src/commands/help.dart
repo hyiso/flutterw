@@ -1,13 +1,13 @@
 import 'dart:io';
 
 import 'package:args/command_runner.dart';
-import 'package:cli_wrapper/cli_wrapper.dart';
+import 'package:flutterw/runner.dart';
 
-class HelpCommand extends WrapperCommand {
+class HelpCommand extends Command {
   @override
   String get name => 'help';
 
-  HelpCommand({required super.originExecutable});
+  HelpCommand() : super();
 
   @override
   String get description =>
@@ -41,12 +41,13 @@ class HelpCommand extends WrapperCommand {
 
       if (commands[name] == null) {
         if (command == null) {
-          final process =
-              Process.runSync(originExecutable, ['help', ...argResults!.rest]);
+          final process = Process.runSync(
+              (runner! as FlutterWrapperRunner).originExecutableName,
+              ['help', ...argResults!.rest]);
           stderr.write((process.stderr as String?)
-              ?.replaceAll('$originExecutable ', '${runner!.executableName} '));
+              ?.replaceAll('flutter ', '${runner!.executableName} '));
           stdout.write((process.stdout as String?)
-              ?.replaceAll('$originExecutable ', '${runner!.executableName} '));
+              ?.replaceAll('flutter ', '${runner!.executableName} '));
           return;
         }
 

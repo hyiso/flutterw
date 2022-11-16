@@ -1,17 +1,17 @@
 name: flutterw
 description: flutterw wraps flutter tool to support hooks and progressive plugins system.
-version: 0.5.0-pre.0
+version: 0.5.0-pre.1
 homepage: https://github.com/hyiso/flutterw
 
 environment:
-  sdk: '>=2.17.0 <3.0.0'
+  sdk: '>=2.12.0 <3.0.0'
 
 dependencies:
   args: ^2.3.1
   colorize: ^3.0.0
   path: ^1.8.1
   yaml: ^3.1.0
-  cli_wrapper: ^0.2.2
+  cli_wrapper: ^0.3.0
 
 dev_dependencies:
   lints: ^2.0.0
