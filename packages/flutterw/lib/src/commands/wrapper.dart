@@ -3,35 +3,37 @@ import 'dart:io';
 import 'package:cli_wrapper/cli_wrapper.dart';
 import 'package:colorize/colorize.dart';
 import 'package:flutterw/runner.dart';
-import 'package:yaml/yaml.dart';
+import 'package:flutterw/src/config.dart';
 
 class FlutterWrapperCommand extends WrapperCommand {
   FlutterWrapperCommand({
     required String name,
   }) : super(name: name);
 
-  YamlMap? get config {
-    final file = File(kConfigFileName);
-    if (file.existsSync()) {
-      return loadYaml(file.readAsStringSync());
-    }
-    return null;
-  }
+  String get originExecutableName =>
+      (runner! as FlutterWrapperRunner).originExecutableName;
 
   @override
-  Map<String, List> get hooks {
-    final Map registeredHooks = config?['hooks'] ?? {};
-    return registeredHooks.cast();
-  }
+  Map<String, List> get hooks => projectConfig.hooks;
 
   @override
-  Map<String, String> get plugins {
-    final Map registeredPlugins = config?['plugins'] ?? {};
-    return registeredPlugins.cast();
-  }
+  Map<String, String> get plugins => projectConfig.plugins;
 
   @override
   bool get hidden => true;
+
+  bool useGlobalPlugin = false;
+
+  @override
+  List<String>? hitPluginCommand() {
+    final projectPluginCommand = super.hitPluginCommand();
+    if (projectPluginCommand != null) {
+      return projectPluginCommand;
+    }
+    useGlobalPlugin = true;
+    return lookupPluginCommand(
+        globalConfig.plugins, wrapperArgResults.commands);
+  }
 
   @override
   Future<void> runPlugin(String plugin, List<String> arguments) async {
@@ -41,7 +43,13 @@ class FlutterWrapperCommand extends WrapperCommand {
         '  └> flutter pub run ${plugins[plugin]} ${arguments.join(' ')}');
     final process = await Process.start(
       (runner! as FlutterWrapperRunner).originExecutableName,
-      ['pub', 'run', plugins[plugin]!, ...arguments],
+      [
+        'pub',
+        if (useGlobalPlugin) 'global',
+        'run',
+        plugins[plugin]!,
+        ...arguments,
+      ],
       mode: ProcessStartMode.inheritStdio,
     );
     final code = await process.exitCode;
