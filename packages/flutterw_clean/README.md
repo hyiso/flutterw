@@ -1,2 +1,1 @@
-A sample command-line application with an entrypoint in `bin/`, library code
-in `lib/`, and example unit test in `test/`.
+A sample flutterw plugin, see usage [flutterw plugin example](https://github.com/hyiso/flutterw/tree/main/examples/plugins_example)
