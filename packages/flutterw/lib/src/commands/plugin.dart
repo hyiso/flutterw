@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:io';
 
 import 'package:args/command_runner.dart';
 import 'package:flutterw/src/config.dart';
@@ -13,6 +14,7 @@ class PluginCommand extends Command {
   PluginCommand() {
     addSubcommand(PluginAddCommand());
     addSubcommand(PluginRemoveCommand());
+    addSubcommand(PluginListCommand());
   }
 }
 
@@ -82,4 +84,32 @@ class PluginRemoveCommand extends Command {
     final config = isGlobal ? globalConfig : projectConfig;
     await config.removePlugin(name: argResults!.rest.first);
   }
+}
+
+class PluginListCommand extends Command {
+  @override
+  String get description => 'List plugins';
+
+  @override
+  String get name => 'list';
+
+  @override
+  List<String> get aliases => ['ls'];
+
+  @override
+  FutureOr? run() async {
+    if (globalConfig.plugins.isNotEmpty) {
+      stderr.writeln('Global Plugins');
+      for (var entry in globalConfig.plugins.entries) {
+        stderr.writeln('  ${entry.key}: ${entry.value}');
+      }
+    }
+    if (projectConfig.plugins.isNotEmpty) {
+      stderr.writeln('Project Plugins');
+      for (var entry in projectConfig.plugins.entries) {
+        stderr.writeln('  ${entry.key}: ${entry.value}');
+      }
+    }
+  }
+
 }
