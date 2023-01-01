@@ -1,9 +1,9 @@
 import 'dart:io';
 
 import 'package:cli_wrapper/cli_wrapper.dart';
-import 'package:colorize/colorize.dart';
 import 'package:flutterw/runner.dart';
 import 'package:flutterw/src/config.dart';
+import 'package:flutterw/src/logger.dart';
 
 class FlutterWrapperCommand extends WrapperCommand {
   FlutterWrapperCommand({
@@ -25,48 +25,65 @@ class FlutterWrapperCommand extends WrapperCommand {
   bool useGlobalPlugin = false;
 
   @override
-  List<String>? hitPluginCommand() {
-    final projectPluginCommand = super.hitPluginCommand();
-    if (projectPluginCommand != null) {
-      return projectPluginCommand;
+  Future<void> runCommand() async {
+    var hittedPluginCommand =
+        lookupPluginCommand(plugins, wrapperArgResults.commands);
+    if (hittedPluginCommand == null) {
+      useGlobalPlugin = true;
+      hittedPluginCommand =
+          lookupPluginCommand(globalConfig.plugins, wrapperArgResults.commands);
     }
-    useGlobalPlugin = true;
-    return lookupPluginCommand(
-        globalConfig.plugins, wrapperArgResults.commands);
+    if (hittedPluginCommand != null) {
+      final name = hittedPluginCommand.removeAt(0);
+      final package = useGlobalPlugin
+          ? globalConfig.plugins[name]
+          : projectConfig.plugins[name];
+      runPlugin(
+        name: name,
+        package: package!,
+        arguments: [...hittedPluginCommand, ...wrapperArgResults.arguments],
+      );
+    } else {
+      await (runner! as FlutterWrapperRunner)
+          .runOrigin([name, ...argResults!.arguments]);
+    }
   }
 
   @override
-  Future<void> runPlugin(String plugin, List<String> arguments) async {
+  Future<void> runPlugin({
+    required String name,
+    required String package,
+    List<String> arguments = const [],
+  }) async {
     stderr.writeln(
-        'Hit plugin ${Colorize('$plugin:${plugins[plugin]}')}, run it');
-    stderr.writeln(
-        '  └> flutter pub run ${plugins[plugin]} ${arguments.join(' ')}');
-    final process = await Process.start(
-      (runner! as FlutterWrapperRunner).originExecutableName,
-      [
-        'pub',
-        if (useGlobalPlugin) 'global',
-        'run',
-        plugins[plugin]!,
-        ...arguments,
-      ],
-      mode: ProcessStartMode.inheritStdio,
-    );
+        'Redirect to plugin ${logger.ansi.emphasized('$name:$package')}');
+    final exe = (runner! as FlutterWrapperRunner).originExecutableName;
+    final args = [
+      'pub',
+      if (useGlobalPlugin) 'global',
+      'run',
+      package,
+      ...arguments.takeWhile((value) => !['-v', '--verbose'].contains(value)),
+    ];
+    final progress = logger.progress('  └> $exe ${args.join(' ')}');
+    final process = await Process.start(exe, args,
+        mode: logger.isVerbose
+            ? ProcessStartMode.inheritStdio
+            : ProcessStartMode.normal);
     final code = await process.exitCode;
     if (code != 0) {
       exit(code);
     }
+    progress.finish(showTiming: true);
   }
 
   @override
   void printHook(String hook) {
-    stderr.writeln(
-        Colorize('Run ${Colorize(hook).white().bold()} hook scripts...')
-            .white());
+    stderr.writeln('Run ${logger.ansi.emphasized(hook)} hook scripts...');
   }
 
   @override
   void printHookScript(String script) {
-    stderr.writeln(Colorize('  └> $script').white());
+    stderr.writeln(logger.ansi.emphasized('  └> $script'));
   }
 }

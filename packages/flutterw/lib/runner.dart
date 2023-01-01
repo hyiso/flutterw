@@ -7,7 +7,7 @@ import 'src/commands/wrapper.dart';
 
 class FlutterWrapperRunner extends WrapperRunner {
   FlutterWrapperRunner() : super('flutterw', 'flutter') {
-    super.addCommand(PluginCommand());
+    addCommand(PluginCommand());
   }
 
   @override
@@ -25,11 +25,11 @@ class FlutterWrapperRunner extends WrapperRunner {
       '  ...';
 
   @override
-  void addCommand(Command command) {
-    if (command.name == 'help') {
-      super.addCommand(HelpCommand());
+  void addWrapperCommand([String name = '']) {
+    if (name == 'help') {
+      addCommand(HelpCommand());
     } else {
-      super.addCommand(FlutterWrapperCommand(name: command.name));
+      addCommand(FlutterWrapperCommand(name: name));
     }
   }
 }

@@ -1,7 +1,7 @@
 import 'dart:io';
 
-import 'package:colorize/colorize.dart';
 import 'package:flutterw/runner.dart';
+import 'package:flutterw/src/logger.dart';
 import 'package:flutterw/version.g.dart';
 
 void main(List<String> args) async {
@@ -9,7 +9,9 @@ void main(List<String> args) async {
   if (args.contains('--version')) {
     stderr.writeln('Flutterw $kPackageVersion');
   }
-  runner.run(args).catchError((e) {
-    stderr.writeln(Colorize(e.toString()).red());
+  initLogger(false);
+  runner.run(args).catchError((e, stack) {
+    logError(e.toString());
+    logError(stack.toString());
   });
 }

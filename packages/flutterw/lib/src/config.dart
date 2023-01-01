@@ -48,9 +48,6 @@ class FlutterWrapperConfig {
     } else {
       Logger.standard().stderr('Set plugin [$name] to package [$package].');
     }
-    if (!_file.existsSync()) {
-      _file.createSync(recursive: true);
-    }
     final pluginsMap = {
       ...plugins,
       name: package,
@@ -61,6 +58,9 @@ class FlutterWrapperConfig {
       editor.update(['plugins'], pluginsMap);
     } else {
       editor.update([], {'plugins': pluginsMap});
+    }
+    if (!_file.existsSync()) {
+      _file.createSync(recursive: true);
     }
     _file.writeAsStringSync(editor.toString());
   }
@@ -82,10 +82,8 @@ class FlutterWrapperConfig {
   }
 }
 
-String get home => Platform.environment['HOME']!;
-
-FlutterWrapperConfig get globalConfig =>
-    FlutterWrapperConfig._(join(home, '.flutterw', kConfigFileName));
+FlutterWrapperConfig get globalConfig => FlutterWrapperConfig._(
+    join(Platform.environment['HOME']!, '.flutterw', kConfigFileName));
 
 FlutterWrapperConfig get projectConfig =>
     FlutterWrapperConfig._(kConfigFileName);
