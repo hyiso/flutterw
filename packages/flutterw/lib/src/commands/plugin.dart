@@ -111,5 +111,4 @@ class PluginListCommand extends Command {
       }
     }
   }
-
 }
