@@ -37,7 +37,8 @@ void main() {
         'flutterw_example'
       ]);
       expect(exampleDir.existsSync(), true);
-      Process.runSync('rm', ['-fr', join(example, 'test')]);
+      Process.runSync(
+          'rm', ['-fr', join(example, 'lib'), join(example, 'test')]);
 
       final examplePubspec = File(join(exampleDir.path, 'pubspec.yaml'));
       expect(examplePubspec.existsSync(), true);
