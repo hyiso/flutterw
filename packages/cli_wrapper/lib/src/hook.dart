@@ -1,7 +1,6 @@
 import 'dart:io';
 
 abstract class Hook {
-
   String get name;
 
   List<String> get scripts;
@@ -18,7 +17,8 @@ abstract class Hook {
       final process = await Process.start(
         cmds.removeAt(0),
         [...cmds, ...args],
-        mode: isVerbose ? ProcessStartMode.inheritStdio : ProcessStartMode.normal,
+        mode:
+            isVerbose ? ProcessStartMode.inheritStdio : ProcessStartMode.normal,
       );
       final code = await process.exitCode;
       if (code != 0) {

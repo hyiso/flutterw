@@ -24,7 +24,6 @@ class _TestHook extends Hook {
 
   @override
   List<String> get scripts => [];
-
 }
 
 void main() {
@@ -35,7 +34,6 @@ void main() {
   final leafHook = _TestHook('pre_foo_bar');
 
   group('WrapperCommand.lookupHook should work', (() {
-
     test('without hooks', () {
       final runner = WrapperRunner('cliw', 'cli');
       final argResults = runner.parse(args);
@@ -45,9 +43,8 @@ void main() {
     });
 
     test('when only root hook exists', () {
-      final runner = WrapperRunner(
-        'cliw', 'cli', 
-        hooks: {rootHook.name: rootHook});
+      final runner =
+          WrapperRunner('cliw', 'cli', hooks: {rootHook.name: rootHook});
       final argResults = runner.parse(args);
       final command = _getLeafCommand(argResults, runner) as WrapperCommand;
       final pre = command.lookupHook(prefix);
@@ -57,9 +54,8 @@ void main() {
     });
 
     test('when only leaf hook exists', () {
-      final runner = WrapperRunner(
-        'cliw', 'cli',
-        hooks: {leafHook.name: leafHook});
+      final runner =
+          WrapperRunner('cliw', 'cli', hooks: {leafHook.name: leafHook});
       final argResults = runner.parse(args);
       final command = _getLeafCommand(argResults, runner) as WrapperCommand;
       final pre = command.lookupHook(prefix);
@@ -69,12 +65,10 @@ void main() {
     });
 
     test('when both leaf and root hook exist', () {
-      final runner = WrapperRunner(
-        'cliw', 'cli',
-        hooks: {
-          rootHook.name: rootHook,
-          leafHook.name: leafHook,
-        });
+      final runner = WrapperRunner('cliw', 'cli', hooks: {
+        rootHook.name: rootHook,
+        leafHook.name: leafHook,
+      });
       final argResults = runner.parse(args);
       final command = _getLeafCommand(argResults, runner) as WrapperCommand;
       final pre = command.lookupHook(prefix);

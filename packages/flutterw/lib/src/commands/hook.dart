@@ -4,23 +4,23 @@ import 'dart:io';
 import 'package:args/command_runner.dart';
 import 'package:flutterw/src/config.dart';
 
-class PluginCommand extends Command {
+class HookCommand extends Command {
   @override
-  String get description => 'Manage Flutterw Plugins.';
+  String get description => 'Manage Flutterw Hooks.';
 
   @override
-  String get name => 'plugin';
+  String get name => 'hook';
 
-  PluginCommand() {
-    addSubcommand(PluginAddCommand());
-    addSubcommand(PluginRemoveCommand());
-    addSubcommand(PluginListCommand());
+  HookCommand() {
+    addSubcommand(HookAddCommand());
+    addSubcommand(HookRemoveCommand());
+    addSubcommand(HookListCommand());
   }
 }
 
-class PluginAddCommand extends Command {
+class HookAddCommand extends Command {
   @override
-  String get description => 'Add a plugin';
+  String get description => 'Add a hook';
 
   @override
   String get name => 'add';
@@ -37,23 +37,23 @@ class PluginAddCommand extends Command {
     return '$invocation <name> <package> [--global,-g]';
   }
 
-  PluginAddCommand() {
+  HookAddCommand() {
     argParser.addFlag('global',
-        abbr: 'g', negatable: false, help: 'Add a plugin globally.');
+        abbr: 'g', negatable: false, help: 'Add a hook globally.');
   }
 
   @override
   FutureOr? run() async {
     final isGlobal = argResults!['global'] == true;
     final config = isGlobal ? globalConfig : projectConfig;
-    await config.addPlugin(
+    await config.addHook(
         name: argResults!.rest.first, package: argResults!.rest.last);
   }
 }
 
-class PluginRemoveCommand extends Command {
+class HookRemoveCommand extends Command {
   @override
-  String get description => 'Remove a plugin';
+  String get description => 'Remove a hook';
 
   @override
   String get name => 'remove';
@@ -73,22 +73,22 @@ class PluginRemoveCommand extends Command {
     return '$invocation <name> [--global,-g]';
   }
 
-  PluginRemoveCommand() {
+  HookRemoveCommand() {
     argParser.addFlag('global',
-        abbr: 'g', negatable: false, help: 'Remove a plugin globally.');
+        abbr: 'g', negatable: false, help: 'Remove a hook globally.');
   }
 
   @override
   FutureOr? run() async {
     final isGlobal = argResults!['global'] == true;
     final config = isGlobal ? globalConfig : projectConfig;
-    await config.removePlugin(name: argResults!.rest.first);
+    await config.removeHook(name: argResults!.rest.first);
   }
 }
 
-class PluginListCommand extends Command {
+class HookListCommand extends Command {
   @override
-  String get description => 'List plugins';
+  String get description => 'List all hooks';
 
   @override
   String get name => 'list';
@@ -98,15 +98,19 @@ class PluginListCommand extends Command {
 
   @override
   FutureOr? run() async {
-    if (globalConfig.plugins.isNotEmpty) {
-      stderr.writeln('Global Plugins');
-      for (var entry in globalConfig.plugins.entries) {
+    if (projectConfig.hooks.isEmpty && globalConfig.hooks.isEmpty) {
+      stderr.writeln('No hooks.');
+      return;
+    }
+    if (globalConfig.hooks.isNotEmpty) {
+      stderr.writeln('Global Hooks');
+      for (var entry in globalConfig.hooks.entries) {
         stderr.writeln('  ${entry.key}: ${entry.value}');
       }
     }
-    if (projectConfig.plugins.isNotEmpty) {
-      stderr.writeln('Project Plugins');
-      for (var entry in projectConfig.plugins.entries) {
+    if (projectConfig.hooks.isNotEmpty) {
+      stderr.writeln('Project Hooks');
+      for (var entry in projectConfig.hooks.entries) {
         stderr.writeln('  ${entry.key}: ${entry.value}');
       }
     }

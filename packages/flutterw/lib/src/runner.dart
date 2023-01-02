@@ -1,13 +1,13 @@
 import 'package:args/command_runner.dart';
 import 'package:cli_wrapper/cli_wrapper.dart';
 
-import 'src/commands/help.dart';
-import 'src/commands/plugin.dart';
-import 'src/commands/wrapper.dart';
+import 'commands/help.dart';
+import 'commands/hook.dart';
 
 class FlutterWrapperRunner extends WrapperRunner {
-  FlutterWrapperRunner() : super('flutterw', 'flutter') {
-    addCommand(PluginCommand());
+  FlutterWrapperRunner(Map<String, Hook> hooks)
+      : super('flutterw', 'flutter', hooks: hooks) {
+    addCommand(HookCommand());
   }
 
   @override
@@ -25,11 +25,11 @@ class FlutterWrapperRunner extends WrapperRunner {
       '  ...';
 
   @override
-  void addWrapperCommand([String name = '']) {
-    if (name == 'help') {
-      addCommand(HelpCommand());
+  void addCommand(Command command) {
+    if (command.name == 'help') {
+      super.addCommand(HelpCommand());
     } else {
-      addCommand(FlutterWrapperCommand(name: name));
+      super.addCommand(command);
     }
   }
 }

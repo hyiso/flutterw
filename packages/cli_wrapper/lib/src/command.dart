@@ -8,9 +8,7 @@ import 'package:tuple/tuple.dart';
 import 'hook.dart';
 import 'runner.dart';
 
-
 class WrapperCommand<T> extends Command<T> {
-
   @override
   String get description => 'Wrapped $name command.';
 
@@ -25,7 +23,8 @@ class WrapperCommand<T> extends Command<T> {
   }) : super();
 
   @override
-  ArgParser get argParser => isLeaf ? ArgParser.allowAnything() : super.argParser;
+  ArgParser get argParser =>
+      isLeaf ? ArgParser.allowAnything() : super.argParser;
 
   List<String> get commandList {
     final cmds = <String>[];
@@ -48,7 +47,7 @@ class WrapperCommand<T> extends Command<T> {
       await it.item1.run([...it.item2, ...argResults!.arguments]);
     } else {
       await (runner! as WrapperRunner)
-          .runOrigin([commandList.first, ...commandList.sublist(1), ...argResults!.arguments]);
+          .runOrigin([...commandList, ...argResults!.arguments]);
     }
     final post = lookupHook('post_');
     if (post != null) {
@@ -72,10 +71,9 @@ class WrapperCommand<T> extends Command<T> {
   ///   pre_foo_bar_baz
   ///   pre_foo_bar
   ///   pre_foo
-  /// 
+  ///
   /// If hits any of them, then return pair of the hook and unused arguments.
-  /// 
-
+  ///
   Tuple2<Hook, Iterable<String>>? lookupHook([String? prefix]) {
     var args = <String>[];
     final cmds = Queue.of(commandList);
@@ -92,5 +90,4 @@ class WrapperCommand<T> extends Command<T> {
     }
     return null;
   }
-
 }

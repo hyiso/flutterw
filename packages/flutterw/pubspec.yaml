@@ -1,5 +1,5 @@
 name: flutterw
-description: flutterw wraps flutter tool to support hooks and progressive plugins system.
+description: flutterw wraps flutter tool to support hooks system.
 version: 0.5.0-pre.2
 homepage: https://github.com/hyiso/flutterw
 

@@ -5,8 +5,6 @@ import 'package:path/path.dart';
 import 'package:yaml/yaml.dart';
 import 'package:yaml_edit/yaml_edit.dart';
 
-const kConfigFileName = 'flutterw.yaml';
-
 class FlutterWrapperConfig {
   final File _file;
 
@@ -26,38 +24,33 @@ class FlutterWrapperConfig {
     return null;
   }
 
-  Map<String, List> get hooks {
+  Map<String, dynamic> get hooks {
     final Map registeredHooks = _map?['hooks'] ?? {};
     return registeredHooks.cast();
   }
 
-  Map<String, String> get plugins {
-    final Map registeredPlugins = _map?['plugins'] ?? {};
-    return registeredPlugins.cast();
-  }
-
-  Future<void> addPlugin({
+  Future<void> addHook({
     required String name,
     required String package,
   }) async {
-    if (plugins[name] != null) {
+    if (hooks[name] != null) {
       Logger.standard()
-          .stderr('Plugin [$name] was set to package [${plugins[name]}].');
+          .stderr('Hook [$name] was set to package [${hooks[name]}].');
       Logger.standard().stderr('This will overwrite it to pacjage [$package].');
       return;
     } else {
-      Logger.standard().stderr('Set plugin [$name] to package [$package].');
+      Logger.standard().stderr('Set hook [$name] to package [$package].');
     }
-    final pluginsMap = {
-      ...plugins,
+    final hooksMap = {
+      ...hooks,
       name: package,
     };
 
     final editor = YamlEditor(_yaml ?? '');
-    if (plugins.isNotEmpty) {
-      editor.update(['plugins'], pluginsMap);
+    if (hooks.isNotEmpty) {
+      editor.update(['hooks'], hooksMap);
     } else {
-      editor.update([], {'plugins': pluginsMap});
+      editor.update([], {'hooks': hooksMap});
     }
     if (!_file.existsSync()) {
       _file.createSync(recursive: true);
@@ -65,25 +58,25 @@ class FlutterWrapperConfig {
     _file.writeAsStringSync(editor.toString());
   }
 
-  Future<void> removePlugin({
+  Future<void> removeHook({
     required String name,
   }) async {
-    if (plugins[name] == null) {
+    if (hooks[name] == null) {
       Logger.standard().stderr(
-          Logger.standard().ansi.error('Plugin [$name] has not been set.'));
+          Logger.standard().ansi.error('Hook [$name] has not been set.'));
       return;
     }
-    Logger.standard().stderr('Remove plugin [$name].');
-    final pluginsMap = {...plugins};
-    pluginsMap.remove(name);
+    Logger.standard().stderr('Remove hook [$name].');
+    final hooksMap = {...hooks};
+    hooksMap.remove(name);
     final editor = YamlEditor(_yaml ?? '');
-    editor.update(['plugins'], pluginsMap.isEmpty ? null : pluginsMap);
+    editor.update(['hooks'], hooksMap.isEmpty ? null : hooksMap);
     _file.writeAsStringSync(editor.toString());
   }
 }
 
 FlutterWrapperConfig get globalConfig => FlutterWrapperConfig._(
-    join(Platform.environment['HOME']!, '.flutterw', kConfigFileName));
+    join(Platform.environment['HOME']!, '.flutterw.yaml'));
 
 FlutterWrapperConfig get projectConfig =>
-    FlutterWrapperConfig._(kConfigFileName);
+    FlutterWrapperConfig._('flutterw.yaml');

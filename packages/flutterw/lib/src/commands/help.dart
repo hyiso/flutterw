@@ -1,7 +1,7 @@
 import 'dart:io';
 
 import 'package:args/command_runner.dart';
-import 'package:flutterw/runner.dart';
+import 'package:flutterw/src/runner.dart';
 
 class HelpCommand extends Command {
   @override

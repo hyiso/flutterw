@@ -11,14 +11,14 @@ class WrapperRunner<T> extends CommandRunner<T> {
   WrapperRunner(
     String executableName,
     this.originExecutableName, {
-      this.hooks = const {},
-    }
-  ) : super(
+    this.hooks = const {},
+  }) : super(
           executableName,
           '$executableName wraps $originExecutableName cli with hooks system.',
         );
 
   final String originExecutableName;
+
   /// hooks map
   final Map<String, Hook> hooks;
 
@@ -52,7 +52,8 @@ class WrapperRunner<T> extends CommandRunner<T> {
       if (invalidCommand(name)) {
         break;
       }
-      final command = createCommand(name, args.isEmpty || invalidCommand(args.first));
+      final command =
+          createCommand(name, args.isEmpty || invalidCommand(args.first));
       if (parent != null) {
         parent.addSubcommand(command);
       } else {
@@ -68,7 +69,7 @@ class WrapperRunner<T> extends CommandRunner<T> {
     return name.startsWith('-') || name.startsWith('.') || name.contains('/');
   }
 
-  Command<T> createCommand(String name,[ bool isLeaf = true ]) {
+  Command<T> createCommand(String name, [bool isLeaf = true]) {
     return WrapperCommand<T>(name: name, isLeaf: isLeaf);
   }
 

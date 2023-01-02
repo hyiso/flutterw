@@ -1,1 +1,9 @@
-See [examples](https://github.com/hyiso/flutterw/tree/main/examples)
+## Getting started
+
+Clone this repo
+
+cd examples/hooks_example
+
+flutterw clean
+
+flutterw pub get
