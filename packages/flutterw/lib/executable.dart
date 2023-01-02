@@ -32,6 +32,9 @@ void main(List<String> args) {
   print(hooks.keys);
   var runner = FlutterWrapperRunner(hooks);
   initLogger(false);
+  if (args.contains('--version')) {
+    stderr.writeln('Flutterw $kPackageVersion');
+  }
   runner.run(args).catchError((e, stack) {
     logError(e.toString());
     logError(stack.toString());

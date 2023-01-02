@@ -5,7 +5,6 @@ import 'package:test/test.dart';
 
 void main() {
   group('flutterw', (() {
-
     setUp(() {
       Process.runSync(
           'dart', ['pub', 'global', 'activate', '--source', 'path', '.']);
@@ -17,7 +16,8 @@ void main() {
 
     test('origin comamnds should work.', () {
       final testExample = 'test_example';
-      final testExampleDir = Directory(join(Directory.current.path, testExample));
+      final testExampleDir =
+          Directory(join(Directory.current.path, testExample));
       if (testExampleDir.existsSync()) {
         testExampleDir.deleteSync(recursive: true);
       }
@@ -56,6 +56,9 @@ void main() {
       expect(stderrMessage.contains('pre_clean'), true);
       expect(stderrMessage.contains('flutter pub run flutterw_clean'), true);
       expect(stderrMessage.contains('post_clean'), true);
+
+      Process.runSync('flutterw', ['pub', 'get'],
+          workingDirectory: exampleDir.path);
     });
   }));
 }
