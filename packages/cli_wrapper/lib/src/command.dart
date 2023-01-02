@@ -39,7 +39,7 @@ class WrapperCommand<T> extends Command<T> {
 
   @override
   FutureOr<T>? run() async {
-    final pre = lookupHook('pre');
+    final pre = lookupHook('pre_');
     if (pre != null) {
       await pre.item1.run([...pre.item2, ...argResults!.arguments]);
     }
@@ -50,7 +50,7 @@ class WrapperCommand<T> extends Command<T> {
       await (runner! as WrapperRunner)
           .runOrigin([commandList.first, ...commandList.sublist(1), ...argResults!.arguments]);
     }
-    final post = lookupHook('post');
+    final post = lookupHook('post_');
     if (post != null) {
       await post.item1.run([...post.item2, ...argResults!.arguments]);
     }
