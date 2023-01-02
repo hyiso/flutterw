@@ -1,7 +1,11 @@
 name: flutterw
-description: flutterw wraps flutter tool to support hooks system.
-version: 0.5.0-pre.2
+description:
+  Flutterw wraps flutter tool to support hooks system.
+  Hooks can be both scripts and dart package.
+  Adding global or project hook by using flutterw hook command.
+version: 0.5.0
 homepage: https://github.com/hyiso/flutterw
+repository: https://github.com/hyiso/flutterw/tree/main/packages/flutterw
 
 environment:
   sdk: '>=2.12.0 <3.0.0'

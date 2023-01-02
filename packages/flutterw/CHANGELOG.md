@@ -1,14 +1,8 @@
-## 0.5.0-pre.2
+## 0.5.0
 
-- Add plugin command.
-
-## 0.5.0-pre.1
-
-- Upgrade `cli_wrapper` to `^0.3.0`.
-
-## 0.5.0-pre.0
-
-- Support plugins system.
+- Upgrade `cli_wrapper` to `^0.4.1`.
+- Merge plugins to hooks.
+- Support project and global hooks system.
 - Remve dartw, focus on flutter tool.
 
 ## 0.4.0

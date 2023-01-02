@@ -3,7 +3,6 @@
 
 ## Features 
 * Basiclly supports all flutter commands.
-* Located flutter tool.
 * Command hooks
 
 ## Getting Started
@@ -13,8 +12,8 @@ Install the latest `flutterw` version as a global package via [Pub](https://pub.
 ```bash
 dart pub global activate flutterw
 
-# Or alternatively to specify a specific version:
-# pub global activate flutterw 0.3.0
+# Or
+# flutter pub global activate flutterw
 ```
 
 ## Usage
@@ -28,7 +27,7 @@ i.e:
   ...
 ```
 
-### Command Hooks
+### Hooks
 
 Adding command hooks in `flutterw.yaml` can automatically do extra works.
 ``` yaml
@@ -36,7 +35,24 @@ hooks:
   pre_clean:
     - echo 'task 1'
     - echo 'task 2'
-  post_pub_get:
+  post_clean:
     - echo 'task 3'
     - echo 'task 4'
 ```
+
+#### Add Package Hook
+
+You can add a package hook to global or project.
+
+First, activate a package globally
+
+``` shell
+dart pub global activate flutterw_clean
+```
+
+Then, add it to flutterw global hook.
+``` shell
+flutterw hook add clean flutterw_clean -g
+```
+
+Finallym, run `flutterw clean` to see output message.
