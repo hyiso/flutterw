@@ -1,39 +1,38 @@
+import 'dart:collection';
 import 'dart:io';
 
 import 'package:args/args.dart';
 import 'package:args/command_runner.dart';
 
-import 'arg_wrapper.dart';
-import 'command_wrapper.dart';
+import 'command.dart';
+import 'hook.dart';
 
 class WrapperRunner<T> extends CommandRunner<T> {
   WrapperRunner(
     String executableName,
-    this.originExecutableName,
+    this.originExecutableName, {
+      this.hooks = const {},
+    }
   ) : super(
           executableName,
-          '$executableName wraps $originExecutableName cli with hooks and plugins system.',
+          '$executableName wraps $originExecutableName cli with hooks system.',
         );
 
   final String originExecutableName;
+  /// hooks map
+  final Map<String, Hook> hooks;
 
   @override
   ArgResults parse(Iterable<String> args) {
     ArgResults results;
     try {
       results = argParser.parse(args);
-      if (results.command == null) {
-        final wrapResults = WrapperArgParser().parse(args);
-        if (wrapResults.commands.isNotEmpty) {
-          addWrapperCommand(wrapResults.commands.first);
-          results = super.parse(args);
-        }
+      if (results.command == null && _generateCommand(Queue.of(args)) != null) {
+        results = super.parse(args);
       }
     } on ArgParserException catch (e) {
       if (e.commands.isEmpty) {
-        final wrapResults = WrapperArgParser().parse(args);
-        if (wrapResults.commands.isNotEmpty) {
-          addWrapperCommand(wrapResults.commands.first);
+        if (_generateCommand(Queue.of(args)) != null) {
           results = super.parse(args);
         } else {
           results = ArgParser.allowAnything().parse(args);
@@ -43,6 +42,34 @@ class WrapperRunner<T> extends CommandRunner<T> {
       }
     }
     return results;
+  }
+
+  Command? _generateCommand(Queue<String> args) {
+    Command? root;
+    Command? parent;
+    while (args.isNotEmpty) {
+      final name = args.removeFirst();
+      if (invalidCommand(name)) {
+        break;
+      }
+      final command = createCommand(name, args.isEmpty || invalidCommand(args.first));
+      if (parent != null) {
+        parent.addSubcommand(command);
+      } else {
+        addCommand(command);
+      }
+      parent = command;
+      root ??= command;
+    }
+    return root;
+  }
+
+  bool invalidCommand(String name) {
+    return name.startsWith('-') || name.startsWith('.') || name.contains('/');
+  }
+
+  Command<T> createCommand(String name,[ bool isLeaf = true ]) {
+    return WrapperCommand<T>(name: name, isLeaf: isLeaf);
   }
 
   @override
@@ -68,9 +95,5 @@ class WrapperRunner<T> extends CommandRunner<T> {
     if (code != 0) {
       exit(code);
     }
-  }
-
-  void addWrapperCommand([String name = '']) {
-    addCommand(WrapperCommand(name: name));
   }
 }

@@ -11,7 +11,7 @@ and the Flutter guide for
 [developing packages and plugins](https://flutter.dev/developing-packages). 
 -->
 
-Use cli_wrapper to wrap a cli to support command hooks and plugins system.
+Use cli_wrapper to wrap a cli to support command hooks system.
 
 ## Getting started
 
