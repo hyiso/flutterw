@@ -1,4 +1,4 @@
-library hooks_example;
+library flutterw_clean_example;
 
 /// A Calculator.
 class Calculator {

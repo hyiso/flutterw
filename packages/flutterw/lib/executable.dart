@@ -29,7 +29,6 @@ void main(List<String> args) {
               global: !projectConfig.hooks.containsKey(key)));
     }
   });
-  print(hooks.keys);
   var runner = FlutterWrapperRunner(hooks);
   initLogger(false);
   if (args.contains('--version')) {

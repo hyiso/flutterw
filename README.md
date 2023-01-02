@@ -8,8 +8,8 @@ Install the latest `flutterw` version as a global package via [Pub](https://pub.
 ```bash
 dart pub global activate flutterw
 
-# Or alternatively to specify a specific version:
-# pub global activate flutterw 0.3.0
+# Or
+# flutter pub global activate flutterw
 ```
 
 ## Usage
@@ -22,4 +22,4 @@ i.e:
   flutterw pub get
   ...
 ```
-More usage see [examples](https://github.com/hyiso/flutterw/tree/main/examples) fold.
+More usage see [example](https://github.com/hyiso/flutterw/tree/main/packages/flutterw/example).
