@@ -1,13 +1,14 @@
-name: flutterw_clean
-description: flutterw clean command
-version: 0.1.1
+name: cli_wrapper
+description: cli_wrapper wraps a cli to support command hooks system.
+version: 0.3.0
 homepage: https://github.com/hyiso/flutterw
 
 environment:
   sdk: '>=2.12.0 <3.0.0'
 
 dependencies:
-  path: ^1.8.0
+  args: ^2.3.1
+  tuple: ^2.0.0
 
 dev_dependencies:
   lints: ^2.0.0

@@ -1,3 +1,7 @@
+## 0.5.0-pre.2
+
+- Add plugin command.
+
 ## 0.5.0-pre.1
 
 - Upgrade `cli_wrapper` to `^0.3.0`.
