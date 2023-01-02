@@ -1,3 +1,10 @@
+## 0.4.1
+- Fix homepage & description.
+
+## 0.4.0
+- Merge plugins to hooks.
+- Support hook lookup fallback .
+
 ## 0.3.0
 - Remove `originExecutable` parameter of `WrapperCommand` constructor.
 

@@ -1,4 +1,10 @@
-# 0.1.2
+## 0.1.4
+- Change homepage
+
+## 0.1.3
+- Remove example/lib
+
+## 0.1.2
 
 - Just use `flutter clean`
 
