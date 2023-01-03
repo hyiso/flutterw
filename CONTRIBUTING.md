@@ -6,9 +6,7 @@ please read these instructions carefully.
 
 ## About
 
-Flutterw is a tool that wraps the flutter tool to support command hooks system.
-With `pre` and `post` hooks you can do some jobs before and after command running.
-Also, you can customize command behavior by providing command hook.
+Flutterw  wraps the flutter tool to support command hooks system.
 
 ## Contribution types
 
