@@ -1,0 +1,11 @@
+{
+  "name": "Flutterw",
+  "logo": "/assets/flutterw-logo.png",
+  "logoDark": "/assets/flutterw-logo.png",
+  "twitter": "dev_hyiso",
+  "theme": "#FFA03F",
+  "sidebar": [
+    ["Overview", "/"],
+    ["Getting Started", "/getting-started"]
+  ]
+}

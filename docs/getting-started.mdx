@@ -1,0 +1,61 @@
+---
+title: Getting Started
+description: Learn how to start using Flutterw in your project
+---
+
+# Getting Started
+
+Flutterw requires a few one-off steps to be completed before you can start using it.
+
+## Installation
+
+Flutterw can be installed as a global package via [pub.dev](https://pub.dev/):
+
+```bash
+dart pub global activate flutterw
+```
+
+### Setup
+
+To set up your project to use Flutterw, create a `flutterw.yaml` file in the root of the project.
+
+Within the `flutterw.yaml` file, add `hooks` fields:
+
+```yaml
+hooks:
+  pre_clean:
+    - echo 'before clean'
+  clean:
+    - rm -fr .dart_tool
+  post_clean:
+    - echo 'after clean'
+```
+
+The `pre_command` hook scripts will be executed in order **before** command running.
+
+The `command` hook scripts will be executed in order to replace original flutter command.
+
+The `post_command` hook scripts will be executed in order **after** command running.
+
+
+## Next steps
+
+Besides shell scripts, you can set the took to a package listed in `dev_dependencies`.
+
+Flutterw will tranform the package to `dart pub run package` internal. 
+
+For example, your pubspec.yaml has `flutterw_clean` in `dev_dependencies`:
+
+pubspec.yaml
+```yaml
+dev_dependencies:
+  flutter_clean: any
+```
+
+flutterw.yaml
+```yaml
+hooks:
+  clean: flutterw_clean
+```
+
+Then execute the command by running `flutterw clean`, this will step into flutterw_clean package.

@@ -1,0 +1,40 @@
+---
+description: Flutterw wraps Flutter tool to support command hooks system.
+---
+
+<Image src="./assets/flutterw-logo.png" alt="Flutterw" zoom={0.5} caption="Flutterw wraps Flutter tool to support command hooks system." />
+
+## About
+
+Flutterw is a [CLI](https://en.wikipedia.org/wiki/Command-line_interface) tool wraps Flutter tool to support command hooks system.
+
+Flutter Tool is shipped with Flutter SDK every version with some changes. However, upgrading Flutter SDK version is not easy as projects maybe in production mode.
+
+How to be benifited of the Flutter Tool changes without upgrading Flutter SDK is always confusing.
+Also, the Flutter Tool does not give chance to do extra work during command running.
+
+To solve these (and other related) problems, flutterw is created.
+
+Features include:
+
+- Dispatch arguments to flutter tool when no command hook configured.
+- Command hooks system support packages in [Pub](https://pub.dev)
+  - packages created by flutterw author.(eg: [flutterw_clean](https://pub.dev/packages/flutterw_clean))
+  - packages created by other developers.
+- Global command hooks can be shared cross projects.
+- Project hooks simplify project workflow.
+  - Hook scripts can do whatever you want before and after command running.
+
+## Projects using Flutterw
+
+The following projects are using Flutterw:
+
+- [flutterw](https://github.com/hyiso/flutterw)
+
+> Submit a PR if you'd like to add your project to the list.
+> Update the
+> [docs](https://github.com/hyiso/flutterw/edit/main/docs/index.mdx).
+
+## License
+
+See [LICENSE](https://github.com/hyiso/flutterw/blob/main/LICENSE) for more information.

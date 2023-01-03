@@ -32,7 +32,7 @@ To solve these (and other related) problems, flutterw is created.
 
 ### What can Flutterw do?
 
-- Simply dispatches arguments to flutter tool when no command hooks configured.
+- Dispatch arguments to flutter tool when no command hook configured.
 - Command hooks system support packages in [Pub](https://pub.dev)
   - packages created by flutterw author.(eg: [flutterw_clean](https://pub.dev/packages/flutterw_clean))
   - packages created by other developers.
