@@ -62,6 +62,8 @@ To setup and use this flutterw mono repo locally for the purposes of contributin
 ```bash
 # Install melos if it's not already installed:
 dart pub global activate melos
+# Bootstrap melos
+melos bootstrap
 # Activate 'flutterw' from path:
 dart pub global activate --source="path" . --executable="flutterw" --overwrite
 # Confirm you now using a local development version:
