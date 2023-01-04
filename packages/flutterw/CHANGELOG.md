@@ -1,3 +1,7 @@
+## 0.5.2
+
+- Fix logo href and src in `README.md`.
+
 ## 0.5.1
 
 - Fix output version when running `flutterw --version`.
