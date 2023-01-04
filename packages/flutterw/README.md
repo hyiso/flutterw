@@ -1,6 +1,6 @@
 <p align="center">
-  <a href="https://melos.invertase.dev">
-  <img src="../../docs/assets/flutterw-logo.png" alt="Flutterw" /> <br /><br />
+  <a href="https://github.com/hyiso/flutterw">
+  <img src="https://raw.githubusercontent.com/hyiso/flutterw/main/docs/./assets/flutterw-logo.png" alt="Flutterw" /> <br /><br />
   </a>
   <span>Flutterw wraps flutter tool projects to support command hook system.</span>
 </p>
