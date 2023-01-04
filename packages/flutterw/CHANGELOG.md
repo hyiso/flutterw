@@ -1,3 +1,7 @@
+## 0.5.1
+
+- Fix output version when running `flutterw --version`.
+
 ## 0.5.0
 
 - Upgrade `cli_wrapper` to `^0.4.1`.
