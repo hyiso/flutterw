@@ -13,7 +13,7 @@
 
 
 <p align="center">
-  <a href="https://docs.page/hyiso/flutterw~docs">Documentation</a> &bull;
+  <a href="https://docs.page/hyiso/flutterw">Documentation</a> &bull;
   <a href="https://github.com/hyiso/flutterw/blob/main/LICENSE">License</a>
 </p>
 
