@@ -20,21 +20,18 @@ For sub command, hooks' name is joined with underline `_`:
 
 ```yaml
 hooks:
-  pre_pub_get:
-  pub_get:
-  post_pub_get:
+  pre_pub_get: # This is pre hook for command 'pub get'
+  post_pub_get: # This is post hook for command 'pub get'
 ```
 
 ## Dashed command
 
-For Dashed command, hooks' name should replace dash `-` to underline `_`:
+For Dashed command, like `foo-bar`, hooks' name should replace dash `-` to underline `_`:
 
 ```yaml
 hooks:
-  pre_build_ios_framework:
-  build_ios_framework:
-  post_build_ios_framework:
-```
+  pre_build_ios_framework: # This is pre hook for command 'build ios-framework'
+  post_build_ios_framework: # This is post hook for command 'build ios-framework'
 ```
 
 # Hook Type
@@ -54,66 +51,10 @@ hooks:
 
 ## Package Hook
 
-Besides shell scripts, a hook  can also be a dart package.
+Besides shell scripts, a hook can also be a dart package.
 
 ```yaml
 hooks:
   clean: flutterw_clean
 ```
-
-# Hook Scope
-
-Hook scope can be project or global. 
-
-## Project Hooks
-
-Project hooks only be used within project, are configured in project's `flutterw.yaml`:
-
-```yaml
-hooks:
-  pre_clean:
-    - echo 'pre clean 1'
-    - echo 'pre clean 2'
-  clean: flutterw_clean
-  post_clean:
-    - echo 'post clean'
-```
-For package type hook in project scope (like `flutter_clean`), make sure `flutter_clean` is in `dev_dependencies`:
-
-```yaml
-dev_dependencies:
-  flutter_clean: any
-```
-
-## Global Hooks
-
-Global hooks are shared cross projects. Currently only package hook is supported for global hooks.
-
-```
-# Install the hook package if not installed.
-dart pub global activate flutterw_clean
-# Set the package to global hook
-flutterw hook add clean flutterw_clean -g
-```
-
-# Manage Hook
-
-Shell scripts hooks can be managed by modifying project's `flutterw.yaml`
-
-Package hooks can be managed by using `flutterw hook <subcommand>`.
-
-```
-> flutterw hook -h
-
-Manage Flutterw Hooks.
-
-Usage: flutterw hook <subcommand> [arguments]
--h, --help    Print this usage information.
-
-Available subcommands:
-  add      Add a hook
-  list     List all hooks
-  remove   Remove a hook
-
-Run "flutterw help" to see global options.
-```
+**Note: make sure `flutterw_clean` is in `dev_dependencies` of project's `flutterw.yaml`.

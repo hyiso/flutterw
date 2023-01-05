@@ -5,7 +5,7 @@ import 'package:path/path.dart' show join;
 import 'package:yaml/yaml.dart' show YamlMap, loadYaml;
 
 Future<void> main() async {
-  final outputPath = join('lib', 'version.g.dart');
+  final outputPath = join('lib', 'src', 'version.g.dart');
   // ignore: avoid_print
   print('Updating generated file $outputPath');
   final yamlMap = loadYaml(File('pubspec.yaml').readAsStringSync()) as YamlMap;

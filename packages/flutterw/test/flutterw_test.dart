@@ -55,23 +55,5 @@ void main() {
       exampleFlutterw.writeAsStringSync(exampleFlutterwContent);
       exampleReadme.writeAsStringSync(exampleReadmeContent);
     });
-
-    test('hooks should work.', () {
-      Process.runSync('dart', ['pub', 'global', 'activate', 'flutterw_clean']);
-
-      Process.runSync(
-          'flutterw', ['hook', 'add', 'clean', 'flutterw_clean', '-g']);
-
-      String stderrMessage = Process.runSync('flutterw', ['clean'],
-              workingDirectory: exampleDir.path)
-          .stderr;
-      expect(stderrMessage.contains('pre_clean'), true);
-      expect(stderrMessage.contains('flutter pub global run flutterw_clean'),
-          true);
-      expect(stderrMessage.contains('post_clean'), true);
-
-      Process.runSync('flutterw', ['pub', 'get'],
-          workingDirectory: exampleDir.path);
-    });
   }));
 }
