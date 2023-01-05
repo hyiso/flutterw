@@ -7,7 +7,6 @@ import 'package:flutterw/flutterw.dart';
 import 'config.dart';
 
 abstract class HookCommand extends Command {
-
   Logger get logger => Logger.standard();
 
   String get invocationPrefix {
