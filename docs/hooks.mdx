@@ -20,21 +20,18 @@ For sub command, hooks' name is joined with underline `_`:
 
 ```yaml
 hooks:
-  pre_pub_get:
-  pub_get:
-  post_pub_get:
+  pre_pub_get: # This is pre hook for command 'pub get'
+  post_pub_get:# This is post hook for command 'pub get'
 ```
 
 ## Dashed command
 
-For Dashed command, hooks' name should replace dash `-` to underline `_`:
+For Dashed command, like `foo-bar`, hooks' name should replace dash `-` to underline `_`:
 
 ```yaml
 hooks:
-  pre_build_ios_framework:
-  build_ios_framework:
-  post_build_ios_framework:
-```
+  pre_build_ios_framework: # This is pre hook for command 'build ios-framework'
+  post_build_ios_framework: # This is post hook for command 'build ios-framework'
 ```
 
 # Hook Type
