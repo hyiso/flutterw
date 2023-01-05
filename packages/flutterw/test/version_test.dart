@@ -1,6 +1,6 @@
 import 'dart:io';
 
-import 'package:flutterw/version.g.dart';
+import 'package:flutterw/src/version.g.dart';
 import 'package:test/test.dart';
 import 'package:yaml/yaml.dart';
 

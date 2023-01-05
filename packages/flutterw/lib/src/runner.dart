@@ -1,14 +1,15 @@
+import 'dart:io';
+
+import 'package:args/args.dart';
 import 'package:args/command_runner.dart';
 import 'package:cli_wrapper/cli_wrapper.dart';
 
 import 'commands/help.dart';
-import 'commands/hook.dart';
+import 'version.g.dart';
 
 class FlutterWrapperRunner extends WrapperRunner {
   FlutterWrapperRunner(Map<String, Hook> hooks)
-      : super('flutterw', 'flutter', hooks: hooks) {
-    addCommand(HookCommand());
-  }
+      : super('flutterw', 'flutter', hooks: hooks);
 
   @override
   String get description => 'flutterw wraps flutter tool with advanced usage.';
@@ -31,5 +32,16 @@ class FlutterWrapperRunner extends WrapperRunner {
     } else {
       super.addCommand(command);
     }
+  }
+
+  @override
+  Future runCommand(ArgResults topLevelResults) {
+    if (topLevelResults.command == null) {
+      if (topLevelResults.rest.isNotEmpty ||
+          topLevelResults.rest.contains('--version')) {
+        stderr.writeln('Flutterw $kPackageVersion');
+      }
+    }
+    return super.runCommand(topLevelResults);
   }
 }

@@ -31,14 +31,15 @@ To solve these (and other related) problems, flutterw is created.
 **and `command` hooks enable you to customize command behavior.**
 
 ### What can Flutterw do?
-
 - Dispatch arguments to flutter tool when no command hook configured.
-- Command hooks system support packages in [Pub](https://pub.dev)
-  - packages created by flutterw author.(eg: [flutterw_clean](https://pub.dev/packages/flutterw_clean))
+- `pre` hooks are executed before running command.
+- `post` hooks are executed after running command.
+- `command` hooks are executed to replace original command.
+- Hooks can also be packages in [Pub](https://pub.dev)
+  - packages created by flutterw author
+    - [flutterw_clean](https://pub.dev/packages/flutterw_clean)
+    - [flutterw_hook](https://pub.dev/packages/flutterw_hook)
   - packages created by other developers.
-- Global command hooks can be shared cross projects.
-- Project hooks simplify project workflow.
-  - Hook scripts can do whatever you want before and after command running.
 
 ## Install
 
