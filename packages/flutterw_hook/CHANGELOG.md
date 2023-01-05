@@ -1,3 +1,5 @@
-## 1.0.0
+## 0.1.0
 
-- Initial version.
+- `add <name> <package>` to add package hook.
+- `remove <name>` to remove hook package.
+- `list` to list all hook.

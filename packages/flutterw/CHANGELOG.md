@@ -1,3 +1,7 @@
+## 0.5.3
+
+- Move `hook` command to package [flutterw_hook](https://pub.dev/packages/flutterw_hook).
+
 ## 0.5.2
 
 - Fix logo href and src in `README.md`.

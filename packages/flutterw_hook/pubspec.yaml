@@ -1,7 +1,10 @@
 name: flutterw_hook
-description: A sample command-line application.
-version: 1.0.0
-# homepage: https://www.example.com
+description:
+  This is a hook package for flutterw]
+  You can usage this package to manage flutterw's package hooks.
+version: 0.1.0
+homepage: https://github.com/hyiso/flutterw
+repository: https://github.com/hyiso/flutterw/tree/main/packages/flutterw_clean
 
 environment:
   sdk: '>=2.18.6 <3.0.0'
@@ -9,7 +12,7 @@ environment:
 dependencies:
   args: ^2.3.1
   cli_util: ^0.3.5
-  flutterw: ^0.5.2
+  flutterw: ^0.5.3
   path: ^1.8.0
   yaml_edit: ^2.0.3
 

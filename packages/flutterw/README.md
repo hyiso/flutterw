@@ -67,7 +67,7 @@ Global options:
 -h, --help    Print this usage information.
 
 Available commands:
-  hook   Manage Flutterw Hooks.
+  help   Display help information for flutterw.
 
 Run "flutterw help <command>" for more information about a command.
 
