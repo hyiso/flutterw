@@ -2,7 +2,7 @@ name: cli_hook
 description: 
   A tool package for developing cli tools.
   Use cli_hook to make you cli work with hooks system.
-version: 0.1.1
+version: 0.1.2
 homepage: https://github.com/hyiso/flutterw
 repository: https://github.com/hyiso/flutterw/tree/main/packages/cli_hook
 

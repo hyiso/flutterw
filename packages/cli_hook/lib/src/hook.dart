@@ -52,34 +52,31 @@ abstract class Hook {
   /// If hits any of them, then return pair of the hook and unused arguments.
   ///
 
-  static CommandHooks lookup({
+  static Tuple3<Tuple2<Hook, List<String>>?, Tuple2<Hook, List<String>>?,
+      Tuple2<Hook, List<String>>?> lookup({
     required Iterable<String> commands,
     required Map<String, Hook> hooks,
     String separator = ':',
   }) {
     var args = <String>[];
     final cmds = Queue.of(commands);
-    HookArgs? pre, command, post;
+    Tuple2<Hook, List<String>>? pre, command, post;
     while (cmds.isNotEmpty) {
       final hookName = cmds.join(separator);
       if (command == null && hooks[hookName] != null) {
-        command = HookArgs(hooks[hookName]!, [...args]);
+        command = Tuple2<Hook, List<String>>(hooks[hookName]!, [...args]);
       }
       final preHookName = ['pre', hookName].join(separator);
       if (pre == null && hooks[preHookName] != null) {
-        pre = HookArgs(hooks[preHookName]!, [...args]);
+        pre = Tuple2<Hook, List<String>>(hooks[preHookName]!, [...args]);
       }
       final postHookName = ['post', hookName].join(separator);
       if (post == null && hooks[postHookName] != null) {
-        post = HookArgs(hooks[postHookName]!, [...args]);
+        post = Tuple2<Hook, List<String>>(hooks[postHookName]!, [...args]);
       }
       args.insert(0, cmds.removeLast());
     }
-    return CommandHooks(pre, command, post);
+    return Tuple3<Tuple2<Hook, List<String>>?, Tuple2<Hook, List<String>>?,
+        Tuple2<Hook, List<String>>?>(pre, command, post);
   }
 }
-
-/// Hook and arguments.
-typedef HookArgs = Tuple2<Hook, List<String>>;
-
-typedef CommandHooks = Tuple3<HookArgs?, HookArgs?, HookArgs?>;

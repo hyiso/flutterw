@@ -11,7 +11,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 New packages:
 
- - [`cli_hook` - `v0.1.1`](#cli_hook---v011)
+ - [`cli_hook` - `v0.1.2`](#cli_hook---v012)
 
 Packages with breaking changes:
 
@@ -39,8 +39,9 @@ Packages with other changes:
 
  - Move hook support to package `cli_hook`.
 
-#### `cli_hook` - `v0.1.1`
+#### `cli_hook` - `v0.1.2`
 
+ - Fix analyze issue
  - Change min sdk version to `2.12.0`.
  - Support hooks for CommandRunner.
 
