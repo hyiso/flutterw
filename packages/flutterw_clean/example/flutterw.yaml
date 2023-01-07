@@ -1,8 +1,2 @@
 hooks:
-  pre_clean:
-    - echo 'task 1'
-    - echo 'task 2'
   clean: flutterw_clean
-  post_clean:
-    - echo 'task 3'
-    - echo 'task 4'

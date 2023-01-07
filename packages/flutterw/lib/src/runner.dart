@@ -1,21 +1,29 @@
-import 'dart:io';
-
 import 'package:args/args.dart';
 import 'package:args/command_runner.dart';
+import 'package:cli_hook/cli_hook.dart';
+import 'package:cli_util/cli_logging.dart';
 import 'package:cli_wrapper/cli_wrapper.dart';
 
 import 'commands/help.dart';
+import 'config.dart';
 import 'version.g.dart';
 
-class FlutterWrapperRunner extends WrapperRunner {
-  FlutterWrapperRunner(Map<String, Hook> hooks)
-      : super('flutterw', 'flutter', hooks: hooks);
+class FlutterwRunner extends CommandRunner with WrapperRunner, HookRunner {
+  FlutterwRunner({
+    this.config,
+    Logger? logger,
+  })  : logger = logger ?? Logger.standard(),
+        super('flutterw', 'flutterw wraps flutter with command hooks system');
 
-  @override
-  String get description => 'flutterw wraps flutter tool with advanced usage.';
+  final Logger logger;
+
+  final FlutterwConfig? config;
 
   @override
   String get originExecutableName => 'flutter';
+
+  @override
+  Map<String, Hook> get hooks => config?.hooks ?? {};
 
   @override
   String? get usageFooter =>
@@ -37,9 +45,9 @@ class FlutterWrapperRunner extends WrapperRunner {
   @override
   Future runCommand(ArgResults topLevelResults) {
     if (topLevelResults.command == null) {
-      if (topLevelResults.rest.isNotEmpty ||
+      if (topLevelResults.rest.isNotEmpty &&
           topLevelResults.rest.contains('--version')) {
-        stderr.writeln('Flutterw $kPackageVersion');
+        logger.stderr('Flutterw $kPackageVersion');
       }
     }
     return super.runCommand(topLevelResults);
