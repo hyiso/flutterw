@@ -23,19 +23,19 @@ Within the `flutterw.yaml` file, add `hooks` fields:
 
 ```yaml
 hooks:
-  pre_clean:
+  pre:clean:
     - echo 'before clean'
   clean:
     - rm -fr .dart_tool
-  post_clean:
+  post:clean:
     - echo 'after clean'
 ```
 
-The `pre_command` hook scripts will be executed in order **before** command running.
+The `pre:command` hook scripts will be executed in order **before** command running.
 
 The `command` hook scripts will be executed in order to replace original flutter command.
 
-The `post_command` hook scripts will be executed in order **after** command running.
+The `post:command` hook scripts will be executed in order **after** command running.
 
 
 ## Next steps
