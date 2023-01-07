@@ -2,7 +2,7 @@ name: cli_wrapper
 description:
   A tool package for developing flutter or dart cli.
   Use cli_wrapper to wraps a cli to support command hooks system.
-version: 0.4.1
+version: 0.5.0
 homepage: https://github.com/hyiso/flutterw
 repository: https://github.com/hyiso/flutterw/tree/main/packages/cli_wrapper
 

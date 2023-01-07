@@ -1,3 +1,7 @@
+## 0.5.0
+
+ - Make cli_wrapper more focused
+
 ## 0.4.1
 - Fix homepage & description.
 
