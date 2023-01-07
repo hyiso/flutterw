@@ -1,4 +1,4 @@
-/// 
+///
 /// A tool package for developing cli tools.
 /// Use cli_hook to make you cli work with hooks system.
 ///

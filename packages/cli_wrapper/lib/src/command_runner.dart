@@ -5,7 +5,6 @@ import 'package:args/args.dart';
 import 'package:args/command_runner.dart';
 
 mixin WrapperRunner<T> on CommandRunner<T> {
-
   String get originExecutableName;
 
   @override
@@ -50,5 +49,4 @@ mixin WrapperRunner<T> on CommandRunner<T> {
       exit(code);
     }
   }
-
 }

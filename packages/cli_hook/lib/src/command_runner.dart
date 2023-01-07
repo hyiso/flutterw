@@ -5,12 +5,11 @@ import 'package:args/command_runner.dart';
 
 import 'hook.dart';
 
-/// 
+///
 /// [CommandRunner] that support hooks must use this mixin.
 /// And provides supported [hooks] map.
-/// 
+///
 mixin HookRunner<T> on CommandRunner<T> {
-
   /// Hooks Map
   /// This map will be used for command to lookup pre, post and replacement hooks.
   /// override this to provide supported hooks.
@@ -60,5 +59,4 @@ mixin HookRunner<T> on CommandRunner<T> {
   bool invalid(String name) {
     return name.startsWith('-') || name.contains('.') || name.contains('/');
   }
-
 }

@@ -5,7 +5,6 @@ import 'common.dart';
 
 void main() {
   group('WrapperRunner.parse should work when', (() {
-
     final runner = TestRunner();
     test('args is empty.', () {
       final ArgResults argResults = runner.parse([]);
@@ -30,7 +29,8 @@ void main() {
     });
   }));
 
-  group('WrapperRunner.parse should work when args is unsupported command', (() {
+  group('WrapperRunner.parse should work when args is unsupported command',
+      (() {
     final runner = TestRunner();
     test('', () {
       final ArgResults argResults = runner.parse(['test']);

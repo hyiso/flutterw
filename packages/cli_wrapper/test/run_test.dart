@@ -1,4 +1,3 @@
-import 'package:args/args.dart';
 import 'package:args/command_runner.dart';
 import 'package:test/test.dart';
 
@@ -6,7 +5,6 @@ import 'common.dart';
 
 void main() {
   group('WrapperRunner.run should work when', (() {
-
     test('args is empty.', () async {
       final runner = TestRunner();
       await runner.run([]);
@@ -60,21 +58,20 @@ void main() {
 
     test('with subcommand and -h flag.', () async {
       final runner = TestRunner();
-      await runner.run(['test', 'sub',  '-h']);
+      await runner.run(['test', 'sub', '-h']);
       expect(runner.isOriginTriggered, true);
       expect(runner.runOriginArguments, equals(['test', 'sub', '-h']));
     });
 
     test('with subcommand and unsupported flag.', () async {
       final runner = TestRunner();
-      await runner.run(['test', 'sub',  '-v']);
+      await runner.run(['test', 'sub', '-v']);
       expect(runner.isOriginTriggered, true);
       expect(runner.runOriginArguments, equals(['test', 'sub', '-v']));
     });
   }));
 
   group('WrapperRunner.parse should work when args is supported command', (() {
-
     test('', () async {
       final testCommand = TestCommand('test');
       final runner = TestRunner()..addCommand(testCommand);

@@ -1,22 +1,18 @@
-
-
-
 import 'dart:async';
 
 import 'package:args/command_runner.dart';
 import 'package:cli_wrapper/cli_wrapper.dart';
 
 class TestRunner extends CommandRunner with WrapperRunner {
-  
   TestRunner() : super('test', 'test');
-  
+
   @override
   String get originExecutableName => 'test';
 
   bool _originTriggered = false;
   bool get isOriginTriggered => _originTriggered;
 
-  Iterable<String> ?_runOriginArguments;
+  Iterable<String>? _runOriginArguments;
   Iterable<String>? get runOriginArguments => _runOriginArguments;
 
   @override
@@ -33,7 +29,6 @@ class TestRunner extends CommandRunner with WrapperRunner {
     _printUsageCalled = true;
     super.printUsage();
   }
-
 }
 
 class TestCommand extends Command {
@@ -61,5 +56,4 @@ class TestCommand extends Command {
   Future<void> run() async {
     _trigger = true;
   }
-
 }

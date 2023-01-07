@@ -37,7 +37,7 @@ class FlutterwHook extends Hook {
   }) : scripts = [package.toCmd(global)];
 
   @override
-  Future<void> run(Iterable<String> args) async{
+  Future<void> run(Iterable<String> args) async {
     stderr.writeln('Run hook $name');
     return await super.run(args);
   }

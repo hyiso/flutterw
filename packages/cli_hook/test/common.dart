@@ -4,7 +4,6 @@ import 'package:args/command_runner.dart';
 import 'package:cli_hook/cli_hook.dart';
 
 class TestHook extends Hook {
-
   TestHook(this.name);
 
   final String name;
@@ -24,7 +23,6 @@ class TestHook extends Hook {
 }
 
 class TestCommand extends Command {
-
   @override
   String get description => 'command for test';
 
@@ -34,13 +32,10 @@ class TestCommand extends Command {
   TestCommand(this.name);
 
   @override
-  FutureOr? run() {
-  }
-
+  FutureOr? run() {}
 }
 
 class TestRunner extends CommandRunner with HookRunner {
-
   TestRunner(this.hooks) : super('test', 'test');
 
   @override

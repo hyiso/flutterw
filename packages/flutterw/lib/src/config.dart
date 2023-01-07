@@ -20,25 +20,27 @@ class FlutterwConfig {
   }
 
   Map<String, FlutterwHook> get hooks {
-    return (_map?['hooks'] as Map?)?.cast<String, dynamic>().map<String, FlutterwHook>((key, value) {
-      if (value is List) {
-        return MapEntry(
-            key,
-            FlutterwHook.fromScripts(
-              name: key,
-              scripts: value.cast(),
-            ));
-      } else {
-        return MapEntry(
-            key,
-            FlutterwHook.fromPackage(
-              name: key,
-              package: value as String,
-            ));
-      }
-    }) ?? {};
+    return (_map?['hooks'] as Map?)
+            ?.cast<String, dynamic>()
+            .map<String, FlutterwHook>((key, value) {
+          if (value is List) {
+            return MapEntry(
+                key,
+                FlutterwHook.fromScripts(
+                  name: key,
+                  scripts: value.cast(),
+                ));
+          } else {
+            return MapEntry(
+                key,
+                FlutterwHook.fromPackage(
+                  name: key,
+                  package: value as String,
+                ));
+          }
+        }) ??
+        {};
   }
 }
 
-FlutterwConfig get projectConfig =>
-    FlutterwConfig._('flutterw.yaml');
+FlutterwConfig get projectConfig => FlutterwConfig._('flutterw.yaml');

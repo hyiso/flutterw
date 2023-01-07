@@ -4,7 +4,6 @@ import 'dart:io';
 import 'package:tuple/tuple.dart';
 
 abstract class Hook {
-
   List<String> get scripts;
 
   bool get isVerbose => false;
@@ -30,9 +29,9 @@ abstract class Hook {
 
   ///
   /// Search Command Hooks
-  /// 
+  ///
   /// if commands is ['foo', 'bar', 'baz', 'qux', 'fred']
-  /// 
+  ///
   /// search order
   ///   - (pre|post:)foo:bar:baz:qux(:fred)
   ///   - (pre|post:)foo:bar:baz(:qux)
@@ -58,7 +57,6 @@ abstract class Hook {
     required Map<String, Hook> hooks,
     String separator = ':',
   }) {
-
     var args = <String>[];
     final cmds = Queue.of(commands);
     HookArgs? pre, command, post;
@@ -79,7 +77,6 @@ abstract class Hook {
     }
     return CommandHooks(pre, command, post);
   }
-
 }
 
 /// Hook and arguments.

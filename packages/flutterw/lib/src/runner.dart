@@ -9,17 +9,16 @@ import 'config.dart';
 import 'version.g.dart';
 
 class FlutterwRunner extends CommandRunner with WrapperRunner, HookRunner {
-
   FlutterwRunner({
     this.config,
     Logger? logger,
-  }) : logger = logger ?? Logger.standard()
-      , super('flutterw', 'flutterw wraps flutter with command hooks system');
+  })  : logger = logger ?? Logger.standard(),
+        super('flutterw', 'flutterw wraps flutter with command hooks system');
 
   final Logger logger;
 
   final FlutterwConfig? config;
-  
+
   @override
   String get originExecutableName => 'flutter';
 

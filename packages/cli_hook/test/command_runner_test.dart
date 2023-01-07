@@ -5,7 +5,6 @@ import 'common.dart';
 
 void main() {
   group('HookRunner without hooks should run', (() {
-
     final preFooHook = TestHook('pre:foo');
     final postBarHook = TestHook('post:bar');
     test('for command', () async {
