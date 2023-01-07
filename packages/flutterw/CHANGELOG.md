@@ -1,6 +1,8 @@
 ## 0.6.0
 
- - Make flutterw depende on cli_hook and cli_wrapper
+- Make flutterw depende on cli_hook and cli_wrapper
+- Breaking Change
+  - hook name separator changed from underline(`_`) to colon(`:`).
 
 ## 0.5.3
 
