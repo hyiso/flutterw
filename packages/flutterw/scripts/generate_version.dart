@@ -6,6 +6,10 @@ import 'package:yaml/yaml.dart' show YamlMap, loadYaml;
 
 Future<void> main() async {
   final outputPath = join('lib', 'src', 'version.g.dart');
+  final outputFile = File(outputPath);
+  if (!outputFile.existsSync()) {
+    outputFile.createSync(recursive: true);
+  }
   // ignore: avoid_print
   print('Updating generated file $outputPath');
   final yamlMap = loadYaml(File('pubspec.yaml').readAsStringSync()) as YamlMap;
@@ -14,7 +18,7 @@ Future<void> main() async {
 /// This file is generated. Do not manually edit.
 const kPackageVersion = '$currentVersion';
 ''';
-  await File(outputPath).writeAsString(fileContents);
+  outputFile.writeAsStringSync(fileContents);
   // ignore: avoid_print
   print('Updated version to $currentVersion in generated file $outputPath');
 }

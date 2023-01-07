@@ -6,7 +6,6 @@ import 'package:cli_wrapper/cli_wrapper.dart';
 
 import 'commands/help.dart';
 import 'config.dart';
-import 'hook.dart';
 import 'version.g.dart';
 
 class FlutterwRunner extends CommandRunner with WrapperRunner, HookRunner {
@@ -25,25 +24,7 @@ class FlutterwRunner extends CommandRunner with WrapperRunner, HookRunner {
   String get originExecutableName => 'flutter';
 
   @override
-  Map<String, Hook> get hooks => config?.hooks.map<String, FlutterwHook>((key, value) {
-      if (value is List) {
-        return MapEntry(
-            key,
-            FlutterwHook.fromScripts(
-              name: key,
-              scripts: value.cast(),
-              logger: logger,
-            ));
-      } else {
-        return MapEntry(
-            key,
-            FlutterwHook.fromPackage(
-              name: key,
-              package: value as String,
-              logger: logger,
-            ));
-      }
-    }) ?? {};
+  Map<String, Hook> get hooks => config?.hooks ?? {};
 
   @override
   String? get usageFooter =>

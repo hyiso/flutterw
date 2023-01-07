@@ -4,24 +4,6 @@ import 'package:test/test.dart';
 import 'common.dart';
 
 void main() {
-
-  // group('HookCommand.stacks should work', (() {
-  //   test('for command', () {
-  //     final fooCommand = TestCommand('foo');
-  //     final barCommand = TestCommand('bar');
-  //     expect(fooCommand.stacks, equals(['foo']));
-  //     expect(barCommand.stacks, equals(['bar']));
-  //   });
-
-  //   test('for command subcommand', () {
-  //     final fooCommand = TestCommand('foo');
-  //     final barCommand = TestCommand('bar');
-  //     fooCommand.addSubcommand(barCommand);
-  //     expect(fooCommand.stacks, equals(['foo']));
-  //     expect(barCommand.stacks, equals(['foo', 'bar']));
-  //   });
-  // }));
-
   group('HookRunner without hooks should run', (() {
 
     final preFooHook = TestHook('pre:foo');

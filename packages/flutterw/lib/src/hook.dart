@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:cli_hook/cli_hook.dart';
 import 'package:cli_util/cli_logging.dart';
 
@@ -12,7 +14,6 @@ extension _PackageName on String {
 }
 
 class FlutterwHook extends Hook {
-  @override
   final String name;
 
   @override
@@ -20,14 +21,11 @@ class FlutterwHook extends Hook {
 
   final String package;
 
-  final Logger logger;
-
   FlutterwHook.fromScripts({
     required this.name,
     required this.scripts,
     Logger? logger,
-  }) : package = ''
-     , logger = logger ?? Logger.standard();
+  }) : package = '';
 
   @override
   bool get isVerbose => package.isNotEmpty;
@@ -35,24 +33,22 @@ class FlutterwHook extends Hook {
   FlutterwHook.fromPackage({
     required this.name,
     required this.package,
-    Logger? logger,
     bool global = false,
-  }) : scripts = [package.toCmd(global)]
-     , logger = logger ?? Logger.standard();
+  }) : scripts = [package.toCmd(global)];
 
   @override
-  Future<void> run(Iterable<String> args) {
-    logger.stderr('Run hook $name');
-    return super.run(args);
+  Future<void> run(Iterable<String> args) async{
+    stderr.writeln('Run hook $name');
+    return await super.run(args);
   }
 
   @override
-  Future<void> execScript(String script, Iterable<String> args) {
-    logger.stderr('  └> $script');
+  Future<void> execScript(String script, Iterable<String> args) async {
+    stderr.writeln('  └> $script');
     if (package.isNotEmpty) {
-      return super.execScript(script, args);
+      return await super.execScript(script, args);
     } else {
-      return super.execScript(script, []);
+      return await super.execScript(script, []);
     }
   }
 }

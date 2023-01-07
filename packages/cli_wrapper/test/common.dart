@@ -13,34 +13,53 @@ class TestRunner extends CommandRunner with WrapperRunner {
   @override
   String get originExecutableName => 'test';
 
-  bool _runingOrigin = false;
-  bool get isRuningOrigin => _runingOrigin;
+  bool _originTriggered = false;
+  bool get isOriginTriggered => _originTriggered;
 
-  Iterable<String> ?_arguments;
-  Iterable<String>? get arguments => _arguments;
+  Iterable<String> ?_runOriginArguments;
+  Iterable<String>? get runOriginArguments => _runOriginArguments;
 
   @override
   Future<void> runOrigin(List<String> arguments) async {
-    _runingOrigin = true;
-    _arguments = arguments;
+    _originTriggered = true;
+    _runOriginArguments = arguments;
   }
 
+  bool _printUsageCalled = false;
+  bool get isPrintUsageCalled => _printUsageCalled;
+
   @override
-  Command createCommand(String name) => TestCommand(name);
+  void printUsage() {
+    _printUsageCalled = true;
+    super.printUsage();
+  }
 
 }
 
-class TestCommand extends WrapperCommand {
-  TestCommand(String name) : super(name);
-
-  bool _runing = false;
-
-  bool get isRuning => _runing;
+class TestCommand extends Command {
+  @override
+  String get description => 'command $name';
 
   @override
-  FutureOr? run() {
-    _runing = true;
-    return super.run();
+  final String name;
+
+  TestCommand(this.name);
+
+  bool _printUsageCalled = false;
+  bool get isPrintUsageCalled => _printUsageCalled;
+
+  @override
+  void printUsage() {
+    _printUsageCalled = true;
+    super.printUsage();
+  }
+
+  bool _trigger = false;
+  bool get isTriggered => _trigger;
+
+  @override
+  Future<void> run() async {
+    _trigger = true;
   }
 
 }

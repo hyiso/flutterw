@@ -1,3 +1,3 @@
 hooks:
-  pre_pub_publish:
+  pre:pub:publish:
     - dart scripts/generate_version.dart
