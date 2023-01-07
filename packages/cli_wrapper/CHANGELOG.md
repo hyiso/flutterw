@@ -1,6 +1,7 @@
 ## 0.5.0
 
- - Make cli_wrapper more focused
+- Breaking Change:
+  - Move hook support to package `cli_hook`.
 
 ## 0.4.1
 - Fix homepage & description.
