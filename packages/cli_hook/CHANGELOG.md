@@ -1,3 +1,7 @@
-## 1.0.0
+## 0.1.1
 
-- Initial version.
+- Change min sdk version to `2.12.0`.
+
+## 0.1.0
+
+- Support hooks for CommandRunner.
