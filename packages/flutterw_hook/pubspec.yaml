@@ -2,7 +2,7 @@ name: flutterw_hook
 description:
   This is a hook package for flutterw]
   You can usage this package to manage flutterw's package hooks.
-version: 0.1.0
+version: 0.2.0
 homepage: https://github.com/hyiso/flutterw
 repository: https://github.com/hyiso/flutterw/tree/main/packages/flutterw_clean
 

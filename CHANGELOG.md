@@ -15,6 +15,27 @@ Packages with breaking changes:
 
 Packages with other changes:
 
+ - [`flutterw_hook` - `v0.2.0`](#flutterw_hook---v020)
+
+---
+
+#### `flutterw_hook` - `v0.2.0`
+
+ - Upgrade flutterw version
+
+
+## 2023-01-08
+
+### Changes
+
+---
+
+Packages with breaking changes:
+
+ - There are no breaking changes in this release.
+
+Packages with other changes:
+
  - [`flutterw` - `v0.6.0`](#flutterw---v060)
  - [`flutterw_hook` - `v0.1.0+1`](#flutterw_hook---v0101)
 
