@@ -12,7 +12,7 @@ environment:
 dependencies:
   args: ^2.3.1
   cli_util: ^0.3.5
-  flutterw: ^0.5.3
+  flutterw: ^0.6.0
   path: ^1.8.0
   yaml_edit: ^2.0.3
 

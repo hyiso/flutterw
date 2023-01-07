@@ -1,3 +1,7 @@
+## 0.6.0
+
+ - Make flutterw depende on cli_hook and cli_wrapper
+
 ## 0.5.3
 
 - Move `hook` command to package [flutterw_hook](https://pub.dev/packages/flutterw_hook).

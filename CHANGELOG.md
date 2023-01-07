@@ -15,15 +15,43 @@ Packages with breaking changes:
 
 Packages with other changes:
 
- - [`cli_wrapper` - `v0.5.0`](#cli_wrapper---v050)
- - [`flutterw` - `v0.5.3+1`](#flutterw---v0531)
+ - [`flutterw` - `v0.6.0`](#flutterw---v060)
  - [`flutterw_hook` - `v0.1.0+1`](#flutterw_hook---v0101)
 
 Packages with dependency updates only:
 
 > Packages listed below depend on other packages in this workspace that have had changes. Their versions have been incremented to bump the minimum dependency versions of the packages they depend upon in this project.
 
- - `flutterw` - `v0.5.3+1`
+ - `flutterw_hook` - `v0.1.0+1`
+
+---
+
+#### `flutterw` - `v0.6.0`
+
+ - Make flutterw depende on cli_hook and cli_wrapper
+
+
+## 2023-01-08
+
+### Changes
+
+---
+
+Packages with breaking changes:
+
+ - There are no breaking changes in this release.
+
+Packages with other changes:
+
+ - [`cli_wrapper` - `v0.5.0`](#cli_wrapper---v050)
+ - [`flutterw` - `v0.6.0`](#flutterw---v060)
+ - [`flutterw_hook` - `v0.1.0+1`](#flutterw_hook---v0101)
+
+Packages with dependency updates only:
+
+> Packages listed below depend on other packages in this workspace that have had changes. Their versions have been incremented to bump the minimum dependency versions of the packages they depend upon in this project.
+
+ - `flutterw` - `v0.6.0`
  - `flutterw_hook` - `v0.1.0+1`
 
 ---
