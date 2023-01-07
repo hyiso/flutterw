@@ -2,20 +2,22 @@ import 'package:cli_util/cli_logging.dart';
 import 'package:flutterw/flutterw.dart';
 import 'package:yaml_edit/yaml_edit.dart';
 
-class FlutterwHookConfig extends FlutterWrapperConfig {
+class FlutterwHookConfig extends FlutterwConfig {
   FlutterwHookConfig.fromFile(super.file) : super.fromFile();
+
+  Logger get logger => Logger.standard();
 
   Future<void> addHook({
     required String name,
     required String package,
   }) async {
-    if (hooks[name] != null) {
-      Logger.standard()
-          .stderr('Hook [$name] was set to package [${hooks[name]}].');
-      Logger.standard().stderr('This will overwrite it to pacjage [$package].');
+    final hook = hooks[name];
+    if (hook != null && hook.package.isNotEmpty) {
+      logger.stderr('Hook [$name] was set to package [${hook.package}].');
+      logger.stderr('This will overwrite it to pacjage [$package].');
       return;
     } else {
-      Logger.standard().stderr('Set hook [$name] to package [$package].');
+      logger.stderr('Set hook [$name] to package [$package].');
     }
     final hooksMap = {
       ...hooks,
@@ -38,11 +40,10 @@ class FlutterwHookConfig extends FlutterWrapperConfig {
     required String name,
   }) async {
     if (hooks[name] == null) {
-      Logger.standard().stderr(
-          Logger.standard().ansi.error('Hook [$name] has not been set.'));
+      logger.stderr(logger.ansi.error('Hook [$name] has not been set.'));
       return;
     }
-    Logger.standard().stderr('Remove hook [$name].');
+    logger.stderr('Remove hook [$name].');
     final hooksMap = {...hooks};
     hooksMap.remove(name);
     final editor = YamlEditor(yaml ?? '');

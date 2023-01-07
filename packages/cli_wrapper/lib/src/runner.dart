@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:collection';
 import 'dart:io';
 
@@ -5,34 +6,22 @@ import 'package:args/args.dart';
 import 'package:args/command_runner.dart';
 
 import 'command.dart';
-import 'hook.dart';
 
-class WrapperRunner<T> extends CommandRunner<T> {
-  WrapperRunner(
-    String executableName,
-    this.originExecutableName, {
-    this.hooks = const {},
-  }) : super(
-          executableName,
-          '$executableName wraps $originExecutableName cli with hooks system.',
-        );
+mixin WrapperRunner<T> on CommandRunner<T> {
 
-  final String originExecutableName;
-
-  /// hooks map
-  final Map<String, Hook> hooks;
+  String get originExecutableName;
 
   @override
   ArgResults parse(Iterable<String> args) {
     ArgResults results;
     try {
       results = argParser.parse(args);
-      if (results.command == null && _generateCommand(Queue.of(args)) != null) {
+      if (results.command == null && buildCommand(args) != null) {
         results = super.parse(args);
       }
     } on ArgParserException catch (e) {
       if (e.commands.isEmpty) {
-        if (_generateCommand(Queue.of(args)) != null) {
+        if (buildCommand(args) != null) {
           results = super.parse(args);
         } else {
           results = ArgParser.allowAnything().parse(args);
@@ -44,16 +33,22 @@ class WrapperRunner<T> extends CommandRunner<T> {
     return results;
   }
 
-  Command? _generateCommand(Queue<String> args) {
+  Command? buildCommand(Iterable<String> arguments) {
     Command? root;
     Command? parent;
+    final args = Queue.of(arguments);
     while (args.isNotEmpty) {
       final name = args.removeFirst();
-      if (invalidCommand(name)) {
+      if (invalid(name)) {
         break;
       }
-      final command =
-          createCommand(name, args.isEmpty || invalidCommand(args.first));
+
+      Command<T> command;
+      if (args.isEmpty || invalid(args.first)) {
+        command = createCommand(name);
+      } else {
+        command = ParentCommand(name);
+      }
       if (parent != null) {
         parent.addSubcommand(command);
       } else {
@@ -65,13 +60,12 @@ class WrapperRunner<T> extends CommandRunner<T> {
     return root;
   }
 
-  bool invalidCommand(String name) {
-    return name.startsWith('-') || name.startsWith('.') || name.contains('/');
+  /// Invalid for command name.
+  bool invalid(String name) {
+    return name.startsWith('-') || name.contains('.') || name.contains('/');
   }
 
-  Command<T> createCommand(String name, [bool isLeaf = true]) {
-    return WrapperCommand<T>(name: name, isLeaf: isLeaf);
-  }
+  Command<T> createCommand(String name) => WrapperCommand<T>(name);
 
   @override
   Future<T?> runCommand(ArgResults topLevelResults) async {
@@ -97,4 +91,5 @@ class WrapperRunner<T> extends CommandRunner<T> {
       exit(code);
     }
   }
+
 }

@@ -1,11 +1,11 @@
 import 'dart:io';
-
 import 'package:yaml/yaml.dart';
+import 'hook.dart';
 
-class FlutterWrapperConfig {
-  FlutterWrapperConfig._(String path) : this.fromFile(File(path));
+class FlutterwConfig {
+  FlutterwConfig._(String path) : this.fromFile(File(path));
 
-  FlutterWrapperConfig.fromFile(this.file);
+  FlutterwConfig.fromFile(this.file);
 
   final File file;
 
@@ -19,10 +19,9 @@ class FlutterWrapperConfig {
   }
 
   Map<String, dynamic> get hooks {
-    final Map registeredHooks = _map?['hooks'] ?? {};
-    return registeredHooks.cast();
+    return (_map?['hooks'] as Map? ?? {}).cast<String, dynamic>();
   }
 }
 
-FlutterWrapperConfig get projectConfig =>
-    FlutterWrapperConfig._('flutterw.yaml');
+FlutterwConfig get projectConfig =>
+    FlutterwConfig._('flutterw.yaml');
