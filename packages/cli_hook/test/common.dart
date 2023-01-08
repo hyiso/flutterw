@@ -8,17 +8,13 @@ class TestHook extends Hook {
 
   final String name;
 
-  @override
-  List<String> get scripts => [];
-
   bool _triggered = false;
 
   bool get isTriggered => _triggered;
 
   @override
-  Future<void> run(Iterable<String> args) {
+  Future<void> run(Iterable<String> args) async {
     _triggered = true;
-    return super.run(args);
   }
 }
 

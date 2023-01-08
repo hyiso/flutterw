@@ -1,30 +1,48 @@
+import 'dart:io';
+
 import 'package:cli_util/cli_logging.dart';
-import 'package:flutterw/flutterw.dart';
+import 'package:yaml/yaml.dart';
 import 'package:yaml_edit/yaml_edit.dart';
 
-class FlutterwHookConfig extends FlutterwConfig {
-  FlutterwHookConfig.fromFile(super.file) : super.fromFile();
+class FlutterwHookConfig {
+  FlutterwHookConfig.fromFile(this.file);
+
+  final File file;
 
   Logger get logger => Logger.standard();
+
+  Map<String, dynamic> get hooks {
+    if (!file.existsSync()) {
+      return {};
+    }
+    final YamlMap? yaml = loadYaml(file.readAsStringSync());
+    return (yaml?['hooks'] as Map? ?? {}).cast();
+  }
 
   Future<void> addHook({
     required String name,
     required String package,
+    bool overwrite = false,
   }) async {
     final hook = hooks[name];
-    if (hook != null && hook.package.isNotEmpty) {
-      logger.stderr('Hook [$name] was set to package [${hook.package}].');
-      logger.stderr('This will overwrite it to pacjage [$package].');
+    if (hook != null && !overwrite) {
+      logger.stderr(
+          'Hook [$name] has already been set, overwrite it by adding --overwrite flag.');
       return;
-    } else {
-      logger.stderr('Set hook [$name] to package [$package].');
     }
+    logger.stderr('Set hook [$name] to package [$package].');
+    if (!file.existsSync()) {
+      file.writeAsStringSync('''
+hooks:
+  $name: $package''');
+      return;
+    }
+    final editor = YamlEditor(file.readAsStringSync());
     final hooksMap = {
       ...hooks,
       name: package,
     };
 
-    final editor = YamlEditor(yaml ?? '');
     if (hooks.isNotEmpty) {
       editor.update(['hooks'], hooksMap);
     } else {
@@ -46,11 +64,11 @@ class FlutterwHookConfig extends FlutterwConfig {
     logger.stderr('Remove hook [$name].');
     final hooksMap = {...hooks};
     hooksMap.remove(name);
-    final editor = YamlEditor(yaml ?? '');
+    final editor = YamlEditor(file.readAsStringSync());
     editor.update(['hooks'], hooksMap.isEmpty ? null : hooksMap);
     file.writeAsStringSync(editor.toString());
   }
 }
 
 FlutterwHookConfig get config =>
-    FlutterwHookConfig.fromFile(projectConfig.file);
+    FlutterwHookConfig.fromFile(File('flutterw.yaml'));

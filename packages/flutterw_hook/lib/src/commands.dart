@@ -2,7 +2,6 @@ import 'dart:async';
 
 import 'package:args/command_runner.dart';
 import 'package:cli_util/cli_logging.dart';
-import 'package:flutterw/flutterw.dart';
 
 import 'config.dart';
 
@@ -67,13 +66,13 @@ class HookListCommand extends HookCommand {
 
   @override
   FutureOr? run() async {
-    if (projectConfig.hooks.isEmpty) {
+    if (config.hooks.isEmpty) {
       logger.stderr('No hooks.');
       return;
     }
     if (config.hooks.isNotEmpty) {
       logger.stderr('Project Hooks');
-      for (var entry in projectConfig.hooks.entries) {
+      for (var entry in config.hooks.entries) {
         if (entry.value is String) {
           logger.stderr('  ${entry.key}: ${entry.value}');
         } else if (entry.value is Iterable<String>) {

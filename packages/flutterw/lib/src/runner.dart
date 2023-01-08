@@ -8,6 +8,15 @@ import 'commands/help.dart';
 import 'config.dart';
 import 'version.g.dart';
 
+/// A class that can run Flutterw with hooks system support.
+///
+/// To run a command, do:
+///
+/// ```dart main
+/// final flutterw = FlutterwRunner();
+///
+/// await flutterw.run(['pub', 'get']);
+/// ```
 class FlutterwRunner extends CommandRunner with WrapperRunner, HookRunner {
   FlutterwRunner({
     this.config,

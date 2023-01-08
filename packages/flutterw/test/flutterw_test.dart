@@ -10,7 +10,8 @@ void main() {
     final outputContent = outputFile.readAsStringSync();
     tearDownAll(() => outputFile.writeAsStringSync(outputContent));
     test('with hooks.', () async {
-      final runner = FlutterwRunner(config: projectConfig);
+      final runner = FlutterwRunner(
+          config: FlutterwConfig.fromFile(File('flutterw.yaml')));
       outputFile.writeAsStringSync('');
       expect(outputFile.readAsStringSync(), equals(''));
 

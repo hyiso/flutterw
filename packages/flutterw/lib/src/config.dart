@@ -4,23 +4,16 @@ import 'package:yaml/yaml.dart';
 import 'hook.dart';
 
 class FlutterwConfig {
-  FlutterwConfig._(String path) : this.fromFile(File(path));
+  FlutterwConfig.empty() : yaml = null;
 
-  FlutterwConfig.fromFile(this.file);
+  FlutterwConfig.fromFile(File file) : yaml = loadYaml(file.readAsStringSync());
 
-  final File file;
+  FlutterwConfig.fromYaml(String content) : yaml = loadYaml(content);
 
-  String? get yaml => file.existsSync() ? file.readAsStringSync() : null;
-
-  YamlMap? get _map {
-    if (yaml != null) {
-      return loadYaml(yaml!);
-    }
-    return null;
-  }
+  final YamlMap? yaml;
 
   Map<String, FlutterwHook> get hooks {
-    return (_map?['hooks'] as Map?)
+    return (yaml?['hooks'] as Map?)
             ?.cast<String, dynamic>()
             .map<String, FlutterwHook>((key, value) {
           if (value is List) {
@@ -42,5 +35,3 @@ class FlutterwConfig {
         {};
   }
 }
-
-FlutterwConfig get projectConfig => FlutterwConfig._('flutterw.yaml');

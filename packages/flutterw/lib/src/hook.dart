@@ -1,54 +1,79 @@
 import 'dart:io';
 
 import 'package:cli_hook/cli_hook.dart';
-import 'package:cli_util/cli_logging.dart';
 
-extension _PackageName on String {
-  String toCmd(bool global) => [
-        'flutter',
-        'pub',
-        if (global) 'global',
-        'run',
-        this,
-      ].join(' ');
-}
+/// Hook scripts that need args can add this placeholder.
+const kFlutterwHookArgsPlaceholder = '<args>';
 
+/// Fluttew Hook
+///
+/// A hook can be a list of scripts,
+/// or a dart package.
+///
 class FlutterwHook extends Hook {
   final String name;
 
-  @override
   final List<String> scripts;
-
-  final String package;
 
   FlutterwHook.fromScripts({
     required this.name,
     required this.scripts,
-    Logger? logger,
-  }) : package = '';
+  }) : verbose = false;
 
-  @override
-  bool get isVerbose => package.isNotEmpty;
+  final bool verbose;
 
   FlutterwHook.fromPackage({
     required this.name,
-    required this.package,
+    required String package,
     bool global = false,
-  }) : scripts = [package.toCmd(global)];
+  })  : verbose = true,
+        scripts = [
+          [
+            'flutter',
+            'pub',
+            if (global) 'global',
+            'run',
+            package,
+            kFlutterwHookArgsPlaceholder,
+          ].join(' ')
+        ];
 
   @override
   Future<void> run(Iterable<String> args) async {
     stderr.writeln('Run hook $name');
-    return await super.run(args);
+    for (String script in scripts) {
+      await execScript(script, args);
+    }
   }
 
-  @override
+  /// Replace [kFlutterwHookArgsPlaceholder] in script to args,
+  /// then execute this script.
   Future<void> execScript(String script, Iterable<String> args) async {
     stderr.writeln('  └> $script');
-    if (package.isNotEmpty) {
-      return await super.execScript(script, args);
-    } else {
-      return await super.execScript(script, []);
+    final segments = script.split(RegExp(r'\s+'));
+
+    /// Assume <args> is offen at end of script,
+    /// search it from end to start
+    var argsIndex = -1;
+    for (var i = segments.length - 1; i >= 0; i--) {
+      if (segments[i] == kFlutterwHookArgsPlaceholder) {
+        argsIndex = i;
+        break;
+      }
+    }
+
+    /// Replace the
+    if (argsIndex != -1) {
+      segments.replaceRange(argsIndex, argsIndex + 1, args);
+    }
+    final process = await Process.start(
+      segments.removeAt(0),
+      segments,
+      mode: verbose ? ProcessStartMode.inheritStdio : ProcessStartMode.normal,
+    );
+    final code = await process.exitCode;
+    if (code != 0) {
+      exit(code);
     }
   }
 }

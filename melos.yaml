@@ -7,6 +7,7 @@ command:
   version:
     # Generate commit links in package changelogs.
     linkToCommits: true
+    includeCommitId: true
     # Only allow versioning to happen on main branch.
     branch: main
     # Additionally build a changelog at the root of the workspace.

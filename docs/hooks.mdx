@@ -5,7 +5,7 @@ description: "Learn more about all the hooks system in Flutterw."
 
 # Hook Name
 
-Each Flutterw command can be hooked with `pre:command`, `command` and `post:comand`:
+Each Flutter command can be hooked with `pre:command`, `command` and `post:comand`:
 
 ```yaml
 hooks:
@@ -16,7 +16,7 @@ hooks:
 
 ## Sub command
 
-For sub command, hooks' name is joined with underline `:`:
+For sub command, hook name is command parts joined with colon(`:`)
 
 ```yaml
 hooks:
@@ -47,4 +47,23 @@ Besides shell scripts, a hook can also be a dart package.
 hooks:
   clean: flutterw_clean
 ```
-**Note: make sure `flutterw_clean` is in `dev_dependencies` of project's `flutterw.yaml`.
+**Note: make sure `flutterw_clean` is in `dev_dependencies` of project's `pubspec.yaml`.
+
+
+# Hook Args
+
+Hook scripts dont take arguments from running command by default.
+
+If a hook script needs to use the command arguments, use a `<args>` placeholder.
+
+For example:
+
+```yaml
+hooks:
+  pre:build:
+    - dart ./scripts/pre_build.dart <args> # arguments passed to build command will be here.
+  post:build:
+    - dart ./scripts/post_build.dart <args> # arguments passed to build command will be here.
+```
+
+Package type hook will automatically add `<args>` placeholder when tranlated to script internally.

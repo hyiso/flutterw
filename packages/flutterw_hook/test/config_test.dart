@@ -16,13 +16,13 @@ void main() {
       await config.addHook(name: 'hook', package: 'flutterw_hook');
       expect(config.hooks.isNotEmpty, true);
       expect(config.hooks['hook'] != null, true);
-      expect(config.hooks['hook']!.package, equals('flutterw_hook'));
+      expect(config.hooks['hook'], equals('flutterw_hook'));
     });
 
     test('removeHook should work', () async {
       expect(config.hooks.isNotEmpty, true);
       expect(config.hooks['hook'] != null, true);
-      expect(config.hooks['hook']!.package, equals('flutterw_hook'));
+      expect(config.hooks['hook'], equals('flutterw_hook'));
       await config.removeHook(name: 'hook');
       expect(config.hooks.isEmpty, true);
     });
