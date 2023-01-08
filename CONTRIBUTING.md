@@ -12,7 +12,7 @@ Flutterw  wraps the flutter tool to support command hooks system.
 
 ### Bug Report
 
-- If you find a bug, please first report it using [GitHub issues](https://github.com/hyiso/flutterw/issues/new?assignees=&labels=bug%2Ctriage&template=bug_report.yml&title=).
+- If you find a bug, please first report it using [GitHub issues](https://github.com/hyiso/flutterw/issues/new?assignees=&labels=bug%2Ctriage&template=bug_report.yml&&title=fix%3A++).
   - First check if there is not already an issue for it; duplicated issues will be closed.
 
 ### Bug Fix
@@ -24,7 +24,7 @@ Flutterw  wraps the flutter tool to support command hooks system.
 
 ### New Features
 
-- If you'd like to add a feature to the library that doesn't already exist, feel free to describe the feature in a new [GitHub issue](https://github.com/hyiso/flutterw/issues/new?assignees=&labels=enhancement&template=feature_request.yml&title=).
+- If you'd like to add a feature to the library that doesn't already exist, feel free to describe the feature in a new [GitHub issue](https://github.com/hyiso/flutterw/issues/new?assignees=&labels=enhancement&template=feature_request.yml&title=feature%3A++).
 - If you'd like to implement the new feature, please wait for feedback from the project maintainers before spending too much time writing the code. In some cases, enhancements may not align well with the project future development direction.
 - If applicable, implement the code for the new feature and please read the [How To](#how-to-contribute).
 

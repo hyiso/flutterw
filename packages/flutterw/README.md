@@ -36,7 +36,7 @@ To solve these (and other related) problems, flutterw is created.
 - `pre` hooks are executed before running command.
 - `post` hooks are executed after running command.
 - `command` hooks are executed to replace original command.
-- Hooks can also be packages in [Pub](https://pub.dev)
+- Hooks can also be packages in [Pub](https://pub.dev/packages?q=flutterw)
   - packages created by flutterw author
     - [flutterw_clean](https://pub.dev/packages/flutterw_clean)
     - [flutterw_hook](https://pub.dev/packages/flutterw_hook)
