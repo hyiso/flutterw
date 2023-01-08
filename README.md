@@ -40,6 +40,7 @@ To solve these (and other related) problems, flutterw is created.
     - [flutterw_clean](https://pub.dev/packages/flutterw_clean)
     - [flutterw_hook](https://pub.dev/packages/flutterw_hook)
   - packages created by other developers.
+- Add custom commands to `flutterw` dart package.
 
 ## Install
 

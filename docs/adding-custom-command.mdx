@@ -1,0 +1,34 @@
+---
+title: Adding Custom Command
+description: "Learn how to add custom commands to Flutterw."
+---
+
+# Custom Command
+
+Adding custom commands to `Flutterw` is so easy with `command` package hook.
+
+For Example, We want to use `scripts` shorthands, we can add a custom command with package [derry](https://pub.dev/packages/derry).
+
+First, add derry to `dev_dependencies` in `pubspec.yaml`:
+
+```yaml
+dev_dependencies:
+  derry: latest
+```
+
+Then, add the custom command name (here we use `rs`) to derry under `hooks` in `flutterw.yaml`:
+
+```yaml
+hooks:
+  rs: derry
+```
+
+According to derry's usage documentation, we add some scripts to `pubspec.yaml`:
+
+```yaml
+scripts:
+  generate: flutter pub run build_runner build --delete-conflicting-outputs
+  build:aar: flutter build aar --no-debug --no-profile
+```
+
+Now, we can just run `flutterw rs generate`、 `flutterw rs build:aar`.
