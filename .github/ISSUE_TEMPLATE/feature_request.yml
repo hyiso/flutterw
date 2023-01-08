@@ -1,5 +1,6 @@
 name: Feature Request
 description: Request a new feature you would like to see in Flutterw.
+title: "request:  "
 labels: ["enhancement", "triage"]
 # assignees:
 #   - ...
