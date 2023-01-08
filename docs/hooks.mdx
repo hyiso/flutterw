@@ -52,7 +52,7 @@ hooks:
 
 # Hook Args
 
-Hook scripts dont take arguments from running command by default.
+Hook scripts don't take arguments from running command by default.
 
 If a hook script needs to use the command arguments, use a `<args>` placeholder.
 
@@ -66,4 +66,4 @@ hooks:
     - dart ./scripts/post_build.dart <args> # arguments passed to build command will be here.
 ```
 
-Package type hook will automatically add `<args>` placeholder when tranlated to script internally.
+Package type hook will automatically add `<args>` placeholder after translated to script internally.

@@ -1,3 +1,7 @@
+## 0.6.1
+
+ - Update `cli_hook` and docs
+
 ## 0.6.0
 
 - Make flutterw depende on cli_hook and cli_wrapper

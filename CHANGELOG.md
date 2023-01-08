@@ -15,14 +15,28 @@ Packages with breaking changes:
 
 Packages with other changes:
 
+ - [`flutterw` - `v0.6.1`](#flutterw---v061)
+
+---
+
+#### `flutterw` - `v0.6.1`
+
+ - Update `cli_hook` and docs
+
+
+## 2023-01-08
+
+### Changes
+
+---
+
+Packages with breaking changes:
+
+ - There are no breaking changes in this release.
+
+Packages with other changes:
+
  - [`cli_hook` - `v0.2.0`](#cli_hook---v020)
- - [`flutterw` - `v0.6.0+1`](#flutterw---v0601)
-
-Packages with dependency updates only:
-
-> Packages listed below depend on other packages in this workspace that have had changes. Their versions have been incremented to bump the minimum dependency versions of the packages they depend upon in this project.
-
- - `flutterw` - `v0.6.0+1`
 
 ---
 
