@@ -1,3 +1,7 @@
+## 0.2.0
+
+ - Make Hook more extensive
+
 ## 0.1.2
 
 - Fix dart analyze issue.
