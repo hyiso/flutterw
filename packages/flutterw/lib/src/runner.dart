@@ -56,7 +56,7 @@ class FlutterwRunner extends CommandRunner with WrapperRunner, HookRunner {
     if (topLevelResults.command == null) {
       if (topLevelResults.rest.isNotEmpty &&
           topLevelResults.rest.contains('--version')) {
-        logger.stderr('Flutterw $kPackageVersion');
+        logger.stderr('Flutterw $kFlutterwVersion');
       }
     }
     return super.runCommand(topLevelResults);

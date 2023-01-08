@@ -44,3 +44,5 @@ scripts:
   format-check:
     exec: dart format . --output=none --set-exit-if-changed
     description: Run `flutter format` checks for all packages.
+
+  version: dart scripts/generate_version.dart

@@ -9,6 +9,6 @@ void main() {
     final yamlMap =
         loadYaml(File('pubspec.yaml').readAsStringSync()) as YamlMap;
     final yamlVersion = yamlMap['version'] as String;
-    expect(kPackageVersion, equals(yamlVersion));
+    expect(kFlutterwVersion, equals(yamlVersion));
   });
 }
