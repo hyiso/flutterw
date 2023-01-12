@@ -10,5 +10,5 @@ void main(List<String> arguments) async {
     print('---------------------------------------------------------');
     print('');
   }
-  flutterw.main(arguments);
+  await flutterw.main(arguments);
 }

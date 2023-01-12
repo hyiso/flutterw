@@ -2,10 +2,10 @@ import 'dart:io';
 
 import 'package:flutterw/flutterw.dart';
 
-void main(List<String> args) {
+Future<void> main(List<String> args) async {
   final file = File('flutterw.yaml');
   final config = file.existsSync()
       ? FlutterwConfig.fromFile(file)
       : FlutterwConfig.empty();
-  FlutterwRunner(config: config).run(args);
+  await FlutterwRunner(config: config).run(args);
 }

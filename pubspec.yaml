@@ -1,11 +1,14 @@
-name: "flutterw_monorepo"
+name: flutterw_monorepo
 publish_to: none
 
 environment:
   sdk: '>=2.12.0 <3.0.0'
 dev_dependencies:
   flutterw:
-    path: ./packages/flutterw
+    path: packages/flutterw
+  husky: ^0.1.0
+  path: ^1.8.0
+  yaml: ^3.1.0
 
 # This allows us to use flutterw on itself during development.
 executables:
