@@ -7,7 +7,6 @@
   "sidebar": [
     ["Overview", "/"],
     ["Getting Started", "/getting-started"],
-    ["Hooks", "/hooks"],
-    ["Adding Custom Command", "/adding-custom-command"]
+    ["Command Hooks", "/command-hooks"]
   ]
 }

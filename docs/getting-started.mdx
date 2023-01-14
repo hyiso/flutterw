@@ -15,45 +15,34 @@ Flutterw can be installed as a global package via [pub.dev](https://pub.dev/):
 dart pub global activate flutterw
 ```
 
-### Setup
+## Setup Scripts
 
-To set up your project to use Flutterw, create a `pubspec.yaml` file in the root of the project.
+After installed, flutterw can be used just as flutter tool.
 
-Within the `pubspec.yaml` file, add `hooks` fields:
-
-```yaml
-hooks:
-  pre:clean:
-    - echo 'before clean'
-  clean:
-    - rm -fr .dart_tool
-  post:clean:
-    - echo 'after clean'
-```
-
-The `pre:command` hook scripts will be executed in order **before** command running.
-
-The `command` hook scripts will be executed in order to replace original flutter command.
-
-The `post:command` hook scripts will be executed in order **after** command running.
-
-
-## Next steps
-
-Besides shell scripts, you can set the took to a package listed in `dev_dependencies`.
-
-Flutterw will internally tranlate the package to `dart pub run package`. 
-
-For example, your `pubspec.yaml` has `flutterw_clean` in `dev_dependencies`:
+To use flutterw with custom scripts, just add `scripts` fields within the `pubspec.yaml` file:
 
 ```yaml
-dev_dependencies:
-  flutter_clean: any
-```
-Then set hook `clean` to package `flutter_clean` in `pubspec.yaml`:
-```yaml
-hooks:
-  clean: flutterw_clean
+scripts:
+  generate: flutter pub run build_runner build --delete-conflicting-outputs
+
 ```
 
-When running `flutterw clean`, package `flutterw_clean` will be executed.
+Then running `flutterw generate` will execute `flutter pub run build_runner build --delete-conflicting-outputs`.
+
+A Script's value can be multi executable string joined with `&&`, or just a spearated list.
+
+```yaml
+scripts:
+  pull: git pull && git submodule update --init --recursive
+```
+or
+```yaml
+scripts:
+  pull:
+    - git pull
+    - git submodule update --init --recursive
+```
+When running `flutterw pull`, this two scripts will be executable by in roder.
+
+
+**Notice: scripts' names (eg: generate and pull) must not be the same with flutter command name, or they will be considered as a command hooks.**
