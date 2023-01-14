@@ -16,9 +16,6 @@ abstract class HookCommand extends Command {
     parents.add(runner!.executableName);
     return parents.reversed.join(' ');
   }
-
-  @override
-  String get invocation => '$invocationPrefix <name> [package]';
 }
 
 class HookAddCommand extends HookCommand {
@@ -27,6 +24,9 @@ class HookAddCommand extends HookCommand {
 
   @override
   String get name => 'add';
+
+  @override
+  String get invocation => '$invocationPrefix <name> [package]';
 
   @override
   FutureOr? run() async {
@@ -56,7 +56,7 @@ class HookRemoveCommand extends HookCommand {
 
 class HookListCommand extends HookCommand {
   @override
-  String get description => 'List all hooks';
+  String get description => 'List all scripts';
 
   @override
   String get name => 'list';
@@ -66,13 +66,13 @@ class HookListCommand extends HookCommand {
 
   @override
   FutureOr? run() async {
-    if (config.hooks.isEmpty) {
-      logger.stderr('No hooks.');
+    if (config.scripts.isEmpty) {
+      logger.stderr('No scripts.');
       return;
     }
-    if (config.hooks.isNotEmpty) {
-      logger.stderr('Project Hooks');
-      for (var entry in config.hooks.entries) {
+    if (config.scripts.isNotEmpty) {
+      logger.stderr('Project Scripts');
+      for (var entry in config.scripts.entries) {
         if (entry.value is String) {
           logger.stderr('  ${entry.key}: ${entry.value}');
         } else if (entry.value is Iterable<String>) {
