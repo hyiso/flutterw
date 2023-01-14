@@ -26,22 +26,23 @@ Also, the Flutter Tool does not give chance to do extra work during command runn
 
 To solve these (and other related) problems, flutterw is created.
 
-**Flutterw  wraps the flutter tool to support command hooks system.**
-**`pre` and `post` hooks enable you to do extra work before and after command running**
-**and `command` hooks enable you to customize command behavior.**
+**Flutterw wraps flutter tool to support scripts and command hooks.**
+**Hooks are pre, post and command scripts.**
+**`pre` and `post` scripts enable you to do extra work before and after running command**
+**and `command` scripts enable you to customize command behavior.**
 
 ## What can Flutterw do?
 
 - Dispatch arguments to flutter tool when no command hook configured.
-- `pre` hooks are executed before running command.
-- `post` hooks are executed after running command.
-- `command` hooks are executed to replace original command.
-- Hooks can also be packages in [Pub](https://pub.dev/packages?q=flutterw)
+- `pre` scripts are executed before running command.
+- `post` scripts are executed after running command.
+- `command` scripts are executed to replace original command.
+- Command scripts can be packages in [Pub](https://pub.dev/packages?q=flutterw)
   - packages created by flutterw author
     - [flutterw_clean](https://pub.dev/packages/flutterw_clean)
     - [flutterw_hook](https://pub.dev/packages/flutterw_hook)
   - packages created by other developers.
-- Add custom commands to `flutterw` dart package.
+- Add custom to `flutterw`.
 
 ## Who is using Flutterw?
 
@@ -60,7 +61,7 @@ Full commands list and args can be viewed by running flutterw -h.
 ```
 > flutterw -h
 
-flutterw wraps flutter tool with advanced usage.
+flutterw wraps flutter with scripts and command hooks support
 
 Usage: flutterw <command> [arguments]
 
@@ -72,7 +73,7 @@ Available commands:
 
 Run "flutterw help <command>" for more information about a command.
 
-And use flutterw as flutter to enable hooks and plugins:
+And use flutterw as flutter with scripts and command hooks support:
   flutterw doctor
   flutterw clean
   flutterw pub get

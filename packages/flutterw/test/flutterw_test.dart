@@ -5,7 +5,7 @@ import 'package:test/test.dart';
 
 void main() {
   test('flutterw should work.', () async {
-    final runner = FlutterwRunner(config: FlutterwConfig.empty());
+    final runner = FlutterwRunner();
     final dartToolDir = Directory('.dart_tool');
     expect(dartToolDir.existsSync(), true);
 

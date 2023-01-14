@@ -7,5 +7,5 @@ Future<void> main(List<String> args) async {
   final config = file.existsSync()
       ? FlutterwConfig.fromFile(file)
       : FlutterwConfig.empty();
-  await FlutterwRunner(config: config).run(args);
+  await FlutterwRunner(scripts: config.scripts).run(args);
 }

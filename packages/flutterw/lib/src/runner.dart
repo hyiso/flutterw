@@ -5,10 +5,10 @@ import 'package:cli_util/cli_logging.dart';
 import 'package:cli_wrapper/cli_wrapper.dart';
 
 import 'commands/help.dart';
-import 'config.dart';
+import 'hook.dart';
 import 'version.g.dart';
 
-/// A class that can run Flutterw with hooks system support.
+/// A class that can run Flutterw with scripts and command hooks system support.
 ///
 /// To run a command, do:
 ///
@@ -19,24 +19,24 @@ import 'version.g.dart';
 /// ```
 class FlutterwRunner extends CommandRunner with WrapperRunner, HookRunner {
   FlutterwRunner({
-    this.config,
+    Map<String, dynamic> scripts = const {},
     Logger? logger,
   })  : logger = logger ?? Logger.standard(),
-        super('flutterw', 'flutterw wraps flutter with command hooks system');
+        hooks = ScriptHook.transform(scripts),
+        super('flutterw',
+            'flutterw wraps flutter with scripts and command hooks support');
 
   final Logger logger;
-
-  final FlutterwConfig? config;
 
   @override
   String get originExecutableName => 'flutter';
 
   @override
-  Map<String, Hook> get hooks => config?.hooks ?? {};
+  final Map<String, Hook> hooks;
 
   @override
   String? get usageFooter =>
-      '\nAnd use flutterw as flutter to enable hooks and plugins:\n'
+      '\nAnd use flutterw as flutter with scripts and command hooks support:\n'
       '  flutterw doctor\n'
       '  flutterw clean\n'
       '  flutterw pub get\n'

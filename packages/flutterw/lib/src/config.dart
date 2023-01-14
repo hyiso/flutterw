@@ -1,8 +1,9 @@
 import 'dart:io';
 import 'package:yaml/yaml.dart';
 
-import 'hook.dart';
-
+/// FlutterwConfig
+///
+/// contains a [scripts] map
 class FlutterwConfig {
   FlutterwConfig.empty() : yaml = null;
 
@@ -12,26 +13,7 @@ class FlutterwConfig {
 
   final YamlMap? yaml;
 
-  Map<String, FlutterwHook> get hooks {
-    return (yaml?['hooks'] as Map?)
-            ?.cast<String, dynamic>()
-            .map<String, FlutterwHook>((key, value) {
-          if (value is List) {
-            return MapEntry(
-                key,
-                FlutterwHook.fromScripts(
-                  name: key,
-                  scripts: value.cast(),
-                ));
-          } else {
-            return MapEntry(
-                key,
-                FlutterwHook.fromPackage(
-                  name: key,
-                  package: value as String,
-                ));
-          }
-        }) ??
-        {};
+  Map<String, dynamic> get scripts {
+    return (yaml?['scripts'] as Map?)?.cast<String, dynamic>() ?? {};
   }
 }
