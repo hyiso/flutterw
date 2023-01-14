@@ -1,8 +1,3 @@
----
-title: Getting Started
-description: Learn how to start using Flutterw in your project
----
-
 # Getting Started
 
 Flutterw requires a few one-off steps to be completed before you can start using it.

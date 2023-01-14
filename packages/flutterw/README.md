@@ -2,22 +2,21 @@
   <a href="https://github.com/hyiso/flutterw">
   <img src="https://raw.githubusercontent.com/hyiso/flutterw/main/docs/./assets/flutterw-logo.png" alt="Flutterw" /> <br /><br />
   </a>
-  <span>Flutterw wraps flutter tool projects to support command hook system.</span>
+  <span>Flutterw wraps flutter tool to support scripts and command hooks.</span>
 </p>
 
 <p align="center">
   <a href="https://github.com/hyiso/flutterw#readme-badge"><img src="https://img.shields.io/badge/maintained%20with-flutterw-27b6f6.svg?style=flat-square" alt="Flutterw" /></a>
   <a href="https://github.com/invertase/melos#readme-badge"><img src="https://img.shields.io/badge/maintained%20with-melos-f700ff.svg?style=flat-square" alt="Melos" /></a>
-  <a href="https://docs.page"><img src="https://img.shields.io/badge/powered%20by-docs.page-34C4AC.svg?style=flat-square" alt="docs.page" /></a>
 </p>
 
 
 <p align="center">
-  <a href="https://docs.page/hyiso/flutterw">Documentation</a> &bull;
+  <a href="https://hyiso.github.io/flutterw">Documentation</a> &bull;
   <a href="https://github.com/hyiso/flutterw/blob/main/LICENSE">License</a>
 </p>
 
-## About
+## Why Flutterw
 
 Flutter Tool is shipped with Flutter SDK every version with some changes. However, upgrading Flutter SDK version is not easy as projects maybe in production mode.
 
@@ -39,8 +38,7 @@ To solve these (and other related) problems, flutterw is created.
 - `command` scripts are executed to replace original command.
 - Command scripts can be packages in [Pub](https://pub.dev/packages?q=flutterw)
   - packages created by flutterw author
-    - [flutterw_clean](https://pub.dev/packages/flutterw_clean)
-    - [flutterw_hook](https://pub.dev/packages/flutterw_hook)
+    - example [flutterw_clean](https://pub.dev/packages/flutterw_clean)
   - packages created by other developers.
 - Add custom to `flutterw`.
 
