@@ -38,15 +38,15 @@ hooks:
       return;
     }
     final editor = YamlEditor(file.readAsStringSync());
-    final hooksMap = {
-      ...hooks,
-      name: package,
-    };
 
     if (hooks.isNotEmpty) {
-      editor.update(['hooks'], hooksMap);
+      editor.update(['hooks', name], package);
     } else {
-      editor.update([], {'hooks': hooksMap});
+      editor.update([
+        'hooks'
+      ], {
+        name: package,
+      });
     }
     if (!file.existsSync()) {
       file.createSync(recursive: true);
@@ -62,13 +62,15 @@ hooks:
       return;
     }
     logger.stderr('Remove hook [$name].');
-    final hooksMap = {...hooks};
-    hooksMap.remove(name);
     final editor = YamlEditor(file.readAsStringSync());
-    editor.update(['hooks'], hooksMap.isEmpty ? null : hooksMap);
+    if (hooks.keys.length > 1) {
+      editor.remove(['hooks', name]);
+    } else {
+      editor.remove(['hooks']);
+    }
     file.writeAsStringSync(editor.toString());
   }
 }
 
 FlutterwHookConfig get config =>
-    FlutterwHookConfig.fromFile(File('flutterw.yaml'));
+    FlutterwHookConfig.fromFile(File('pubspec.yaml'));

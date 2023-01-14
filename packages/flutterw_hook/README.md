@@ -9,7 +9,7 @@ First, add this package in `dev_dependencies` in project's `pubspec.yaml`.
 dev_dependencies:
   flutterw_hook: any
 ```
-Then, add this package to `hooks` in project's `flutterw.yaml`.
+Then, add this package to `hooks` in project's `pubspec.yaml`.
 ```yaml
 hooks:
   hook: flutterw_hook
@@ -18,7 +18,7 @@ Now, you can run `flutterw hook <subcommand> [arguemnts]` to manage hooks.
 
 ## Manage Hooks
 
-Shell scripts hooks can be managed by modifying project's `flutterw.yaml`
+Shell scripts hooks can be managed by modifying project's `pubspec.yaml`
 
 Package hooks can be managed by using `flutterw hook <subcommand> [arguemnts]`.
 

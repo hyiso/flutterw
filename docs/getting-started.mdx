@@ -17,9 +17,9 @@ dart pub global activate flutterw
 
 ### Setup
 
-To set up your project to use Flutterw, create a `flutterw.yaml` file in the root of the project.
+To set up your project to use Flutterw, create a `pubspec.yaml` file in the root of the project.
 
-Within the `flutterw.yaml` file, add `hooks` fields:
+Within the `pubspec.yaml` file, add `hooks` fields:
 
 ```yaml
 hooks:
@@ -50,7 +50,7 @@ For example, your `pubspec.yaml` has `flutterw_clean` in `dev_dependencies`:
 dev_dependencies:
   flutter_clean: any
 ```
-Then set hook `clean` to package `flutter_clean` in `flutterw.yaml`:
+Then set hook `clean` to package `flutter_clean` in `pubspec.yaml`:
 ```yaml
 hooks:
   clean: flutterw_clean

@@ -6,6 +6,16 @@ homepage:
 environment:
   sdk: '>=2.12.0 <3.0.0'
 
+hooks:
+  pre:clean:
+    - echo 'task 1'
+    - echo 'task 2'
+  clean: flutterw_clean
+  post:clean:
+    - echo 'task 3'
+    - echo 'task 4'
+
+
 dependencies:
   flutter:
     sdk: flutter
