@@ -3,7 +3,7 @@ description:
   A global hook for flutterw.
   Install this package globally and add it to flutterw hook globally.
   It will work with flutterw clean.
-version: 0.1.5
+version: 0.2.0
 homepage: https://github.com/hyiso/flutterw
 repository: https://github.com/hyiso/flutterw/tree/main/packages/flutterw_clean
 

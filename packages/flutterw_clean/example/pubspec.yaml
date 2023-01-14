@@ -9,7 +9,7 @@ environment:
   flutter: ">=1.17.0"
 
 scripts:
-  clean: flutterw_clean
+  clean: flutter pub run flutterw_clean
 
 dependencies:
   flutter:
@@ -19,8 +19,7 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_lints: ^2.0.0
-  flutterw_clean: any
-
+  flutterw_clean: ^0.2.0
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
 
