@@ -6,8 +6,8 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/hyiso/flutterw#readme-badge"><img src="https://img.shields.io/badge/maintained%20with-flutterw-27b6f6.svg?style=flat-square" alt="Flutterw" /></a>
-  <a href="https://github.com/invertase/melos#readme-badge"><img src="https://img.shields.io/badge/maintained%20with-melos-f700ff.svg?style=flat-square" alt="Melos" /></a>
+  <a href="https://github.com/hyiso/flutterw"><img src="https://img.shields.io/badge/maintained%20with-flutterw-27b6f6.svg" alt="Flutterw" /></a>
+  <a href="https://github.com/invertase/melos"><img src="https://img.shields.io/badge/maintained%20with-melos-f700ff.svg" alt="Melos" /></a>
 </p>
 
 

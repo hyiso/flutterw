@@ -1,3 +1,15 @@
+## 0.7.0
+
+> Note: This release has breaking changes.
+
+ - **FIX**: flutterw_test. ([9b544c76](https://github.com/hyiso/flutterw/commit/9b544c7649e2232acc5cc4ad6ade2d845ceacec1))
+ - **FIX**: Forget to update kFlutterwVersion. ([e60f9d23](https://github.com/hyiso/flutterw/commit/e60f9d23915a9a20b8c16356aa8c2f5b7c01eff5))
+ - **DOCS**: Migrate to docsify ([#14](https://github.com/hyiso/flutterw/issues/14)). ([0bed7ce4](https://github.com/hyiso/flutterw/commit/0bed7ce4f5de1111bed75e27d71862cdb4c17553))
+ - **DOCS**: Add adding-custom-command doc. ([3534ee10](https://github.com/hyiso/flutterw/commit/3534ee1050d3a056a339f7389956a0f2b890e7e1))
+ - **DOCS**: change github issue template. ([eb19b735](https://github.com/hyiso/flutterw/commit/eb19b7355c6078087071c61148cc0adc3a070bd4))
+ - **BREAKING** **FEAT**: Add scripts support and merge hooks to scripts ([#13](https://github.com/hyiso/flutterw/issues/13)). ([d85bf309](https://github.com/hyiso/flutterw/commit/d85bf309a9b1acb859d182b5d99a0d7222ff44cb))
+ - **BREAKING** **FEAT**: Migrate config file form flutterw.yaml to pubspec.yaml. ([2ab61c78](https://github.com/hyiso/flutterw/commit/2ab61c7887fc015fc8ccb20d29756f7e7dd133c1))
+
 ## 0.6.1
 
  - Update `cli_hook` and docs
