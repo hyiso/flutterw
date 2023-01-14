@@ -1,22 +1,14 @@
-<p align="center">
-  <a href="https://github.com/hyiso/flutterw">
-  <img src="https://raw.githubusercontent.com/hyiso/flutterw/main/docs/./assets/flutterw-logo.png" alt="Flutterw" /> <br /><br />
-  </a>
-  <span>Flutterw wraps flutter tool to support scripts and command hooks.</span>
-</p>
+## Flutterw
 
-<p align="center">
-  <a href="https://github.com/hyiso/flutterw#readme-badge"><img src="https://img.shields.io/badge/maintained%20with-flutterw-27b6f6.svg?style=flat-square" alt="Flutterw" /></a>
-  <a href="https://github.com/invertase/melos#readme-badge"><img src="https://img.shields.io/badge/maintained%20with-melos-f700ff.svg?style=flat-square" alt="Melos" /></a>
-</p>
+[![Pub Version](https://img.shields.io/pub/v/flutterw?color=blue)](https://pub.dev/packages/flutterw)
+[![popularity](https://img.shields.io/pub/popularity/flutterw?logo=dart)](https://pub.dev/packages/flutterw/score)
+[![likes](https://img.shields.io/pub/likes/flutterw?logo=dart)](https://pub.dev/packages/flutterw/score)
+[![building](https://github.com/hyiso/flutterw/actions/workflows/ci.yml/badge.svg)](https://github.com/hyiso/flutterw/actions)
 
 
-<p align="center">
-  <a href="https://hyiso.github.io/flutterw">Documentation</a> &bull;
-  <a href="https://github.com/hyiso/flutterw/blob/main/LICENSE">License</a>
-</p>
+> Flutterw wraps flutter tool to support scripts and command hooks.
 
-### About
+## Why Flutterw
 
 Flutter Tool is shipped with Flutter SDK every version with some changes. However, upgrading Flutter SDK version is not easy as projects maybe in production mode.
 
@@ -30,7 +22,7 @@ To solve these (and other related) problems, flutterw is created.
 **`pre` and `post` scripts enable you to do extra work before and after running command**
 **and `command` scripts enable you to customize command behavior.**
 
-### What can Flutterw do?
+## What can Flutterw do?
 
 - Dispatch arguments to flutter tool when no command hook configured.
 - `pre` scripts are executed before running command.
@@ -41,6 +33,16 @@ To solve these (and other related) problems, flutterw is created.
     - example [flutterw_clean](https://pub.dev/packages/flutterw_clean)
   - packages created by other developers.
 - Add custom to `flutterw`.
+
+## Who's using Flutterw
+
+The following projects are using flutterw:
+
+- [flutterw](https://github.com/hyiso/flutterw)
+
+> Submit a PR if you'd like to add your project to the list.
+> Update the
+> [docs](https://github.com/hyiso/flutterw/edit/main/docs/README.md).
 
 ## Install
 

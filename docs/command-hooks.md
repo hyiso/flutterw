@@ -1,8 +1,3 @@
----
-title: Command Hooks
-description: "Learn more about all the command hooks system in Flutterw."
----
-
 # Command Hook Script
 
 A command hook is a script with name of flutter builtin commands. For example: 
