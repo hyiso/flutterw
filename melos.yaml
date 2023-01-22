@@ -44,6 +44,5 @@ scripts:
     exec: dart format . --output=none --set-exit-if-changed
     description: Run `dart format` checks for all packages.
 
-  version: dart scripts/generate_version.dart
-  postversion: git add packages/flutterw/lib/src/version.g.dart && git commit --amend --no-edit --no-verify
+  version: dart scripts/generate_version.dart && git add packages/flutterw/lib/src/version.g.dart
   bootstrap: dart pub get && dart run husky install
