@@ -82,8 +82,8 @@ And use flutterw as flutter with scripts and command hooks support:
 
 Using Flutterw? Add a README badge to show it off:
 
-[![flutterw](https://img.shields.io/badge/maintained%20with-flutterw-27b6f6.svg?style=flat-square)](https://github.com/hyiso/flutterw)
+[![flutterw](https://img.shields.io/badge/maintained%20with-flutterw-27b6f6.svg)](https://github.com/hyiso/flutterw)
 
 ```markdown
-[![flutterw](https://img.shields.io/badge/maintained%20with-flutterw-27b6f6.svg?style=flat-square)](https://github.com/hyiso/flutterw)
+[![flutterw](https://img.shields.io/badge/maintained%20with-flutterw-27b6f6.svg)](https://github.com/hyiso/flutterw)
 ```
