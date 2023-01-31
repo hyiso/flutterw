@@ -5,5 +5,5 @@ rules:
     - 2
     - always
     - - flutterw
-      - cli_hook
-      - cli_wrapper
+      - flutterw_clean
+      - release
