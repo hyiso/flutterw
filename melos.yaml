@@ -14,6 +14,7 @@ command:
     workspaceChangelog: true
 
 packages:
+  - examples/*
   - packages/**
 
 scripts:

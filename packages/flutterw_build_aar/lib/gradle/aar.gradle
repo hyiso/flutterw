@@ -1,0 +1,102 @@
+
+project.getGradle().projectsEvaluated {
+    // The module project is the `:flutter` subproject.
+    Project moduleProject = rootProject.subprojects.find { it.name == "flutter" }
+    assert moduleProject != null
+    configurePublishing(moduleProject, false)
+    // Gets the plugin subprojects.
+    Set<Project> modulePlugins = rootProject.subprojects.findAll {
+        it.name != "flutter" && it.name != "app"
+    }
+    modulePlugins.each { pluginProject ->
+        configureVersion(pluginProject)
+        configurePublishing(project, true)
+    }
+}
+
+// Use version in pubspec.yaml
+def configureVersion(Project project) {
+    File file = project.file("../pubspec.yaml")
+    String version = project.version
+    List<String> lines = file.readLines()
+    for (i in 0..<lines.size()) {
+        if (lines[i].startsWith("version:")) {
+            version = lines[i].split(":")[1].trim()
+            break
+        }
+    }
+    project.version = version
+}
+
+
+def configurePublishing(Project project, boolean skipIfExist) {
+    if (project.hasProperty("maven-url")
+            && project.hasProperty("maven-username")
+            && project.hasProperty("maven-password")) {
+        String url = project.property("maven-url")
+        String username = project.property("maven-username")
+        String password = project.property("maven-password")
+
+        project.android.libraryVariants.all { variant ->
+            String artifactId = "${project.name}_${variant.name.toLowerCase()}"
+            if (artifactVersionExistsInMaven(project, artifactId, url, username, password)) {
+                if (skipIfExist) {
+                    println("${project}:${project.version} exists, do not publish to remote maven.")
+                } else {
+                    throw new RuntimeException("${uploadArtifactId}:${project.version} has already been released.")
+                }
+            }
+        }
+        if (project.plugins.hasPlugin("maven-publish")) {
+            project.publishing {
+                repositories {
+                    maven {
+                        url
+                        credentials {//prints the value
+                            username
+                            password
+                        }
+                    }
+                }
+            }
+        } else if (project.plugins.hasPlugin("maven")) {
+            project.uploadArchives {
+                repositories {
+                    mavenDeployer {
+                        repository(url) {
+                            if (username != null && password != null) {
+                                authentication(userName: username, password: password)
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+def artifactVersionExistsInMaven(
+        Project project,
+        String artifactId,
+        String url,
+        String username,
+        String password) {
+    try {
+        String artifactPomPath = "${project.group.replace(".", "/")}/${artifactId}/${project.version}/${artifactId}-${project.version}.pom"
+        String pom = "${url}/${artifactPomPath}"
+        HttpURLConnection connection = (HttpURLConnection) new URL(pom).openConnection()
+        String auth = "${username}:${password}".bytes.encodeBase64().toString()
+        connection.setRequestProperty("Authorization", "Basic ${auth}")
+        connection.setConnectTimeout(10000)
+        connection.setReadTimeout(10000)
+        connection.setRequestMethod("HEAD")
+        def responseCode = connection.getResponseCode()
+        if (responseCode == 401) {
+            throw new RuntimeException("Unauthorized Maven user. Please provide valid MAVEN_USR and MAVEN_PWD.")
+        }
+        return (200 == responseCode)
+    } catch (IOException ignored) {
+        println(ignored)
+        return false
+    }
+}
