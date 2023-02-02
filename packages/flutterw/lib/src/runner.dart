@@ -19,20 +19,24 @@ import 'version.g.dart';
 /// ```
 class FlutterwRunner extends CommandRunner with WrapperRunner, HookRunner {
   FlutterwRunner({
-    Map<String, dynamic> scripts = const {},
+    this.scripts = const {},
     Logger? logger,
   })  : logger = logger ?? Logger.standard(),
-        hooks = ScriptHook.transform(scripts),
         super('flutterw',
             'flutterw wraps flutter with scripts and command hooks support');
 
+  /// Scripts map.
+  /// Each can be a single string or a list of strings
+  final Map<String, dynamic> scripts;
+
+  /// Flutterw Logger
   final Logger logger;
 
   @override
   String get originExecutableName => 'flutter';
 
   @override
-  final Map<String, Hook> hooks;
+  Map<String, Hook> get hooks => ScriptHook.transform(scripts, logger);
 
   @override
   String? get usageFooter =>
