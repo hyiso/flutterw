@@ -18,8 +18,7 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_lints: ^2.0.0
-  flutterw_build_aar:
-    path: ../../packages/flutterw_build_aar
+  flutterw_build_aar: ^ 0.0.1
 
 flutter:
   uses-material-design: false

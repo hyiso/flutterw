@@ -1,11 +1,3 @@
-## Getting started
+# Example
 
-install flutterw
-
-git clone this repo
-
-cd packages/flutterw_clean/example
-
-flutterw pub get
-
-flutterw clean
+> See the [examples](https://github.com/hyiso/flutterw/tree/main/examples/) for example usage.

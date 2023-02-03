@@ -15,7 +15,7 @@ command:
 
 packages:
   - examples/*
-  - packages/**
+  - packages/*
 
 scripts:
 

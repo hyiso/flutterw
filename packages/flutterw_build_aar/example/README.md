@@ -1,3 +1,3 @@
 # Example
 
-> See the [example](https://github.com/hyiso/flutterw) for example usage.
+> See the [examples](https://github.com/hyiso/flutterw/tree/main/examples/module) for example usage.
