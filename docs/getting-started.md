@@ -40,4 +40,4 @@ scripts:
 When running `flutterw pull`, this two scripts will be executable by in roder.
 
 
-**Notice: scripts' names (eg: generate and pull) must not be the same with flutter command name, or they will be considered as a command hooks.**
+**Notice: scripts' names (eg: generate and pull) must not be the same with flutter command name, else they will be considered as command hook scripts.**

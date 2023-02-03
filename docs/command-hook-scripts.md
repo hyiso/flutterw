@@ -1,6 +1,6 @@
-# Command Hook Script
+# Command-Hook-Script
 
-A command hook is a script with name of flutter builtin commands. For example: 
+A command-hook-script is a script with name of flutter builtin commands. For example: 
 
 ```yaml
 scripts:

@@ -11,11 +11,6 @@
 </p>
 
 
-<p align="center">
-  <a href="https://hyiso.github.io/flutterw">Documentation</a> &bull;
-  <a href="https://github.com/hyiso/flutterw/blob/main/LICENSE">License</a>
-</p>
-
 ## Why Flutterw
 
 Flutter Tool is shipped with Flutter SDK every version with some changes. However, upgrading Flutter SDK version is not easy as projects maybe in production mode.
@@ -38,9 +33,10 @@ To solve these (and other related) problems, flutterw is created.
 - `command` scripts are executed to replace original command.
 - Command scripts can be packages in [Pub](https://pub.dev/packages?q=flutterw)
   - packages created by flutterw author
-    - example [flutterw_clean](https://pub.dev/packages/flutterw_clean)
-  - packages created by other developers.
-- Add custom to `flutterw`.
+    - [flutterw_build_aar](https://pub.dev/packages/flutterw_build_aar)
+    - [flutterw_clean](https://pub.dev/packages/flutterw_clean) (for example)
+  - packages created by community developers. (PRs are welcome!)
+- Add custom command to `flutterw`.
 
 ## Who is using Flutterw?
 
@@ -48,35 +44,9 @@ The following projects are using Flutterw:
 
 - [flutterw](https://github.com/hyiso/flutterw)
 
-## Install
+## Documentation
 
-```bash
-dart pub global activate flutterw
-```
-
-## commands
-Full commands list and args can be viewed by running flutterw -h.
-```
-> flutterw -h
-
-flutterw wraps flutter with scripts and command hooks support
-
-Usage: flutterw <command> [arguments]
-
-Global options:
--h, --help    Print this usage information.
-
-Available commands:
-  help   Display help information for flutterw.
-
-Run "flutterw help <command>" for more information about a command.
-
-And use flutterw as flutter with scripts and command hooks support:
-  flutterw doctor
-  flutterw clean
-  flutterw pub get
-  ...
-```
+See [Documentation](https://hyiso.github.io/flutterw) for details.
 
 ## README Badge
 
