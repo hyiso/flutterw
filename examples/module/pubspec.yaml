@@ -1,0 +1,30 @@
+name: module
+description: A new Flutter module project.
+version: 1.0.0+1
+
+environment:
+  sdk: '>=2.18.6 <3.0.0'
+
+scripts:
+  build:aar: flutter pub run flutterw_build_aar <args>
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  path_provider: ^2.0.12
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^2.0.0
+  flutterw_build_aar:
+    path: ../../packages/flutterw_build_aar
+
+flutter:
+  uses-material-design: false
+
+  module:
+    androidX: true
+    androidPackage: com.example.module
+    iosBundleIdentifier: com.example.module

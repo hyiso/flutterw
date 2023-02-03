@@ -1,0 +1,20 @@
+name: flutterw_build_aar
+description:
+  Build aar command hook for flutterw.
+  Install this package and configure it to script build:aar for flutterw.
+  It will work with flutterw build aar.
+version: 0.0.1
+homepage: https://github.com/hyiso/flutterw
+repository: https://github.com/hyiso/flutterw/tree/main/packages/flutterw_build_aar
+documentation: https://hyiso.github.io/flutterw
+
+environment:
+  sdk: '>=2.12.0 <3.0.0'
+
+dependencies:
+  path: ^1.8.0
+  pubspec: ^2.3.0
+
+dev_dependencies:
+  lints: ^1.0.0
+  test: ^1.16.0
