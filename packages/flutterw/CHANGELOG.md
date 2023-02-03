@@ -1,3 +1,7 @@
+## 0.7.1
+
+ - **FEAT**: support --verbose ([#16](https://github.com/hyiso/flutterw/issues/16)). ([55395687](https://github.com/hyiso/flutterw/commit/55395687f007637c940388a8048c0b91a2bde45c))
+
 ## 0.7.0
 
 > Note: This release has breaking changes.

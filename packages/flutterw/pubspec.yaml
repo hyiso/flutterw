@@ -2,7 +2,7 @@ name: flutterw
 description:
   Flutterw wraps flutter tool to support scripts and command hooks.
   Hooks are pre, post and command scripts.
-version: 0.7.0
+version: 0.7.1
 homepage: https://hyiso.github.io/flutterw
 repository: https://github.com/hyiso/flutterw/tree/main/packages/flutterw
 

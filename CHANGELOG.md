@@ -15,6 +15,27 @@ Packages with breaking changes:
 
 Packages with other changes:
 
+ - [`flutterw` - `v0.7.1`](#flutterw---v071)
+
+---
+
+#### `flutterw` - `v0.7.1`
+
+ - **FEAT**: support --verbose ([#16](https://github.com/hyiso/flutterw/issues/16)). ([55395687](https://github.com/hyiso/flutterw/commit/55395687f007637c940388a8048c0b91a2bde45c))
+
+
+## 2023-02-03
+
+### Changes
+
+---
+
+Packages with breaking changes:
+
+ - There are no breaking changes in this release.
+
+Packages with other changes:
+
  - [`flutterw_build_aar` - `v0.1.0`](#flutterw_build_aar---v010)
 
 ---
