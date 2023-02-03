@@ -1,3 +1,7 @@
+## 0.7.1+1
+
+ - **DOCS**: update docs to add packages. ([e9133456](https://github.com/hyiso/flutterw/commit/e91334561bfadd1a1965d97377321028f2f72e6e))
+
 ## 0.7.1
 
  - **FEAT**: support --verbose ([#16](https://github.com/hyiso/flutterw/issues/16)). ([55395687](https://github.com/hyiso/flutterw/commit/55395687f007637c940388a8048c0b91a2bde45c))
