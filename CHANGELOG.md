@@ -3,6 +3,29 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 2023-02-03
+
+### Changes
+
+---
+
+Packages with breaking changes:
+
+ - There are no breaking changes in this release.
+
+Packages with other changes:
+
+ - [`flutterw_build_aar` - `v0.1.0`](#flutterw_build_aar---v010)
+
+---
+
+#### `flutterw_build_aar` - `v0.1.0`
+
+ - Build AAR using version from pubspec.yaml
+
+ - **FEAT**: add packages/flutterw_build_aar and examples/module ([#17](https://github.com/hyiso/flutterw/issues/17)). ([ea8ddd91](https://github.com/hyiso/flutterw/commit/ea8ddd91ad6b8644d29498103083e9784fddb4a9))
+
+
 ## 2023-01-14
 
 ### Changes

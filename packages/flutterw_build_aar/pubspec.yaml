@@ -3,7 +3,7 @@ description:
   Build aar command hook for flutterw.
   Install this package and configure it to script build:aar for flutterw.
   It will work with flutterw build aar.
-version: 0.0.1
+version: 0.1.0
 homepage: https://github.com/hyiso/flutterw
 repository: https://github.com/hyiso/flutterw/tree/main/packages/flutterw_build_aar
 documentation: https://hyiso.github.io/flutterw
