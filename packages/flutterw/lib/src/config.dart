@@ -13,7 +13,26 @@ class FlutterwConfig {
 
   final YamlMap? yaml;
 
-  Map<String, dynamic> get scripts {
-    return (yaml?['scripts'] as Map?)?.cast<String, dynamic>() ?? {};
+  Map<String, List<String>> get scripts {
+    final scriptsNode = yaml?['scripts'];
+    if (scriptsNode == null) {
+      return {};
+    }
+    if (scriptsNode is! Map) {
+      throw FormatException('scripts in pubspec.yaml should be a Map');
+    }
+    final scriptsMap = <String, List<String>>{};
+    for (var name in scriptsNode.keys) {
+      final value = scriptsNode[name];
+      if (value is List) {
+        scriptsMap[name] = value.map((e) => e.toString().trim()).toList();
+      } else if (value is String) {
+        scriptsMap[name] = value.split('&&').map((e) => e.trim()).toList();
+      } else {
+        throw FormatException(
+            'Value of script $name can only be String or List<String>');
+      }
+    }
+    return scriptsMap;
   }
 }
