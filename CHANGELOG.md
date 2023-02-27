@@ -3,6 +3,28 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 2023-02-27
+
+### Changes
+
+---
+
+Packages with breaking changes:
+
+ - There are no breaking changes in this release.
+
+Packages with other changes:
+
+ - [`flutterw` - `v0.7.1+2`](#flutterw---v0712)
+
+---
+
+#### `flutterw` - `v0.7.1+2`
+
+ - **REFACTOR**: refactor flutterw and flutterw/test ([#18](https://github.com/hyiso/flutterw/issues/18)). ([ff9c46da](https://github.com/hyiso/flutterw/commit/ff9c46da30e53a3bb64a57f01d82a7f5a298d789))
+ - **DOCS**(flutterw): update docs about scripts in README.md. ([8f631e3a](https://github.com/hyiso/flutterw/commit/8f631e3a168fc18ccd3949375ba10dec231aa860))
+
+
 ## 2023-02-03
 
 ### Changes

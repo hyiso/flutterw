@@ -1,3 +1,8 @@
+## 0.7.1+2
+
+ - **REFACTOR**: refactor flutterw and flutterw/test ([#18](https://github.com/hyiso/flutterw/issues/18)). ([ff9c46da](https://github.com/hyiso/flutterw/commit/ff9c46da30e53a3bb64a57f01d82a7f5a298d789))
+ - **DOCS**(flutterw): update docs about scripts in README.md. ([8f631e3a](https://github.com/hyiso/flutterw/commit/8f631e3a168fc18ccd3949375ba10dec231aa860))
+
 ## 0.7.1+1
 
  - **DOCS**: update docs to add packages. ([e9133456](https://github.com/hyiso/flutterw/commit/e91334561bfadd1a1965d97377321028f2f72e6e))
