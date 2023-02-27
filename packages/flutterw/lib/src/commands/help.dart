@@ -1,8 +1,7 @@
 import 'dart:io';
 
 import 'package:args/command_runner.dart';
-
-import '../runner.dart';
+import 'package:flutterw/flutterw.dart';
 
 class HelpCommand extends Command {
   @override
@@ -42,10 +41,8 @@ class HelpCommand extends Command {
 
       if (commands[name] == null) {
         if (command == null) {
-          final process = await Process.start(
-              (runner! as FlutterwRunner).originExecutableName,
-              ['help', ...argResults!.rest]);
-          return exitCode = await process.exitCode;
+          return exitCode = await (runner as FlutterwRunner)
+              .runOrigin(['help', ...argResults!.rest]);
         }
 
         command.usageException(

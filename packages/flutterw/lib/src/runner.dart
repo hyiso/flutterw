@@ -1,11 +1,15 @@
+import 'dart:io';
+
 import 'package:args/args.dart';
 import 'package:args/command_runner.dart';
-import 'package:cli_hook/cli_hook.dart';
 import 'package:cli_util/cli_logging.dart';
-import 'package:cli_wrapper/cli_wrapper.dart';
+import 'package:tuple/tuple.dart';
 
 import 'commands/help.dart';
-import 'hook.dart';
+import 'exception.dart';
+import 'logger.dart';
+import 'search.dart';
+import 'shell.dart';
 import 'version.g.dart';
 
 /// A class that can run Flutterw with scripts and command hooks system support.
@@ -17,26 +21,21 @@ import 'version.g.dart';
 ///
 /// await flutterw.run(['pub', 'get']);
 /// ```
-class FlutterwRunner extends CommandRunner with WrapperRunner, HookRunner {
+class FlutterwRunner extends CommandRunner {
   FlutterwRunner({
     this.scripts = const {},
-    Logger? logger,
-  })  : logger = logger ?? Logger.standard(),
-        super('flutterw',
+    this.runOrigin = runFlutter,
+    this.logger,
+  }) : super('flutterw',
             'flutterw wraps flutter with scripts and command hooks support');
 
-  /// Scripts map.
-  /// Each can be a single string or a list of strings
-  final Map<String, dynamic> scripts;
+  final Map<String, List<String>> scripts;
 
-  /// Flutterw Logger
-  final Logger logger;
+  /// Logger
+  final Logger? logger;
 
-  @override
-  String get originExecutableName => 'flutter';
-
-  @override
-  Map<String, Hook> get hooks => ScriptHook.transform(scripts, logger);
+  ///
+  final Future<int> Function(List<String>) runOrigin;
 
   @override
   String? get usageFooter =>
@@ -56,13 +55,69 @@ class FlutterwRunner extends CommandRunner with WrapperRunner, HookRunner {
   }
 
   @override
-  Future runCommand(ArgResults topLevelResults) {
-    if (topLevelResults.command == null) {
-      if (topLevelResults.rest.isNotEmpty &&
-          topLevelResults.rest.contains('--version')) {
-        logger.stderr('Flutterw $kFlutterwVersion');
+  ArgResults parse(Iterable<String> args) {
+    ArgResults results;
+    try {
+      results = argParser.parse(args);
+    } on ArgParserException catch (e) {
+      if (e.commands.isEmpty) {
+        return ArgParser.allowAnything().parse(args);
       }
+      var command = commands[e.commands.first]!;
+      for (var commandName in e.commands.skip(1)) {
+        command = command.subcommands[commandName]!;
+      }
+
+      command.usageException(e.message);
+    }
+    return results;
+  }
+
+  @override
+  Future run(Iterable<String> args) async {
+    // No arguments or contains -h,--help
+    if (args.isEmpty || args.contains('-h') || args.contains('--help')) {
+      return super.run(args);
+    }
+    final topLevelResults = parse(args);
+    final commandHooks = searchCommandHooks(args: args, scripts: scripts);
+    final pre = commandHooks.item1;
+    if (pre != null) {
+      await _hook(pre);
+    }
+    final command = commandHooks.item2;
+    dynamic result;
+    if (command != null) {
+      result = await _hook(command);
+    } else {
+      result = await runCommand(topLevelResults);
+    }
+    final post = commandHooks.item3;
+    if (post != null) {
+      await _hook(post);
+    }
+    return result;
+  }
+
+  @override
+  Future<dynamic> runCommand(ArgResults topLevelResults) {
+    if (topLevelResults.command == null && topLevelResults.rest.isNotEmpty) {
+      if (topLevelResults.rest.contains('--version')) {
+        stdout.writeln('Flutterw $kFlutterwVersion');
+      }
+      return Future.sync(() => runOrigin(topLevelResults.arguments));
     }
     return super.runCommand(topLevelResults);
+  }
+
+  /// Run hook defined in [scripts]
+  Future<int> _hook(Tuple2<String, List<String>> hook) async {
+    logger?.script(hook.item1, scripts[hook.item1]);
+    final code =
+        await runShells(scripts[hook.item1]!, hook.item2, logger: logger);
+    if (code != 0) {
+      throw ScriptException(hook.item1);
+    }
+    return 0;
   }
 }
