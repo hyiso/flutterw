@@ -27,16 +27,16 @@ To solve these (and other related) problems, flutterw is created.
 
 ## What can Flutterw do?
 
-- Dispatch arguments to flutter tool when no command hook configured.
-- `pre` scripts are executed before running command.
-- `post` scripts are executed after running command.
-- `command` scripts are executed to replace original command.
-- Command scripts can be packages in [Pub](https://pub.dev/packages?q=flutterw)
+- Dispatch arguments to `flutter` if no `scripts` configured in `pubspec.yaml`
+- Scripts shortcut `flutterw <script>` runs `scripts` in `pubspec.yaml`
+- `pre:command` scripts are executed before running command
+- `command` scripts are executed to replace original command
+- `post:command` scripts are executed after running command
+- Use packages in [Pub](https://pub.dev/packages?q=flutterw) to enhance/replace `flutter` builtin commands
   - packages created by flutterw author
     - [flutterw_build_aar](https://pub.dev/packages/flutterw_build_aar)
     - [flutterw_clean](https://pub.dev/packages/flutterw_clean) (for example)
   - packages created by community developers. (PRs are welcome!)
-- Add custom command to `flutterw`.
 
 ## Who is using Flutterw?
 
