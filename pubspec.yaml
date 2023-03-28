@@ -11,7 +11,11 @@ dev_dependencies:
   melos: ^3.0.0
   path: ^1.8.0
   yaml: ^3.1.0
+  lint_staged: ^0.2.0
 
 # This allows us to use flutterw on itself during development.
 executables:
   flutterw: flutterw_local
+
+lint_staged:
+  '**.dart': dart fix --apply && dart format --fix
